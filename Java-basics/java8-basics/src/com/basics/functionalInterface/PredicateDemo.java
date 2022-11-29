@@ -2,20 +2,16 @@ package com.basics.functionalInterface;
 
 import java.util.function.Predicate;
 
-public class PredicateDemo implements Predicate<Integer> {
+public class PredicateDemo{
 
 	public static void main(String[] args) {
-		Predicate<Integer> predicate = new PredicateDemo();
+		Predicate<Integer> predicate = (t)-> {
+			if (t % 2 == 0) {
+				return true;
+			}
+			return false;
+		};
 		System.out.println(predicate.test(10));
 
 	}
-
-	@Override
-	public boolean test(Integer t) {
-		if (t % 2 == 0) {
-			return true;
-		}
-		return false;
-	}
-
 }
