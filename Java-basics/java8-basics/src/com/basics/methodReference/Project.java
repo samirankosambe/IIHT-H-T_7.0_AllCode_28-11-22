@@ -9,4 +9,15 @@ public class Project {
 		LocalDate date = LocalDate.now();
 		System.out.println("On: " + date.toString());
 	}
+
+	public static void threadTask() {
+		for (int i = 0; i <= 10; i++) {
+			System.out.println(i * 2);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

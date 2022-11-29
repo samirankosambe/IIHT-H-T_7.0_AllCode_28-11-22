@@ -9,6 +9,10 @@ public class MethodReferenceDemo {
 
 		IWork iWork = Project::projectProgress;
 		iWork.doProject();
+		
+		Runnable runnable = Project::threadTask;
+		Thread t1 = new Thread(runnable);
+		t1.start();
 	}
 
 }
