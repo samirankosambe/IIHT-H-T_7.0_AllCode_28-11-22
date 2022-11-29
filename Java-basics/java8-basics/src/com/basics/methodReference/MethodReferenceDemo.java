@@ -13,6 +13,12 @@ public class MethodReferenceDemo {
 		Runnable runnable = Project::threadTask;
 		Thread t1 = new Thread(runnable);
 		t1.start();
+		
+		//Project project = new Project();
+		Runnable runnable2 = Project::oddNumbers;
+		Thread t2 = new Thread(runnable2);
+		t2.start();
+		
 	}
 
 }
