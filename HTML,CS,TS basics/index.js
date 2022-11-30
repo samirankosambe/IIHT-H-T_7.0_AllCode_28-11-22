@@ -153,3 +153,22 @@ console.log(a + 1000);
 
 const c = 200;
 //c= 500;  this will give an error
+
+function dogs(){
+    this.dogName = "Lab";
+    throw new error("This is not a wild dog");
+}
+
+dogs.prototype.display = function () {
+    return "this dogs breed is : " + this.dogName;
+}
+
+//constructor function
+function Animal(dogName) {
+    this.dogName = dogName;
+}
+
+//Create an object without using the constructor
+Animal.prototype = Object.create(dogs.prototype);
+let tommy = new Animal("German Shepherd");
+console.log(tommy.display());
