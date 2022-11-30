@@ -1,3 +1,4 @@
+//Creating variables
 var name = "Samiran" // Global variable
 var age = 25;
 var isGraduate = true;
@@ -5,12 +6,15 @@ var laptop;
 laptop = "Asus"
 console.log(name);
 
+// creating function
 function alertUser() {
     var favChips = "Cream and Onion"; // Local variable
-    alert("This user is logged in" + name)
+    alert("This user is logged in " + name)
 }
 alertUser();
 // console.log(favChips); // This will give error as we trying to get local variable
+
+// if else statement
 function operators(num) {
     if (num > 20) {
         console.log("Number is greater than 20");
@@ -23,6 +27,7 @@ function operators(num) {
 
 operators(89);
 
+// Switch statement
 function creditScore(score) {
     var creditLimit;
     switch (score) {
@@ -38,6 +43,7 @@ function creditScore(score) {
 }
 creditScore(800);
 
+//For loop
 function counting() {
     for (let i = 1; i <= 10; i++) {
         console.log(i);;
@@ -45,8 +51,13 @@ function counting() {
 }
 counting();
 
+// Creating objects
 var car = new Object();
 car.brand = "Tata";
 car.model = "Nexon";
 car.price = 1700000;
 console.log(car);
+
+//Creating array
+var names = ["Sam", "Abhi", "Shiva"];
+console.log(names);
