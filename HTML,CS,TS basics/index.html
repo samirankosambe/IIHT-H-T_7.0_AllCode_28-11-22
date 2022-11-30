@@ -35,6 +35,21 @@
         }
 
         operators(89);
+
+        function creditScore(score){
+            var creditLimit;
+            switch(score){
+                case 800 : creditLimit = "Above 1 lac";
+                break;
+                case 700 : creditLimit = "50k to 1 lac";
+                break;
+                case 600 : creditLimit = "Below 50k";
+                break;
+                default : creditLimit = "Not eligible";
+            }
+            console.log(creditLimit);
+        }
+        creditScore(800);
     </script>
 </body>
 
