@@ -81,17 +81,34 @@ car1.print();
 var car2 = new Car("BMW", "3-series", "4000000") // we can use different datatypes
 car2.print();
 
+// Inheriting the methods of parent class
 class TodaysDate extends Date {
-    constructor(){
+    constructor() {
         super();
     }
 
-    printDate(){
+    printDate() {
         console.log(this.getDate());
     }
 }
 
-
-// Inheriting the methods of parent class
 let today = new TodaysDate();
 today.printDate();
+
+class AppleLaptops {
+    constructor(brand) {
+        this.brand = "Apple";
+    }
+}
+
+class MackBookPro extends AppleLaptops {
+    constructor(model, processor, ram) {
+        super();
+        this.model = model;
+        this.processor = processor;
+        this.ram = ram;
+    }
+}
+
+let l1 = new MackBookPro("2021 15 Mackbook pro", "i7", 16);
+console.log(l1.brand + " " + l1.model + " " + l1.processor + " " + l1.ram);
