@@ -64,7 +64,7 @@ console.log(names);
 
 // Creating class
 
-class Car {
+let Car = class {
     constructor(brand, modelName, price) {
         this.brand = brand;
         this.modelName = modelName;
