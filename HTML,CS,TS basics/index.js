@@ -61,3 +61,22 @@ console.log(car);
 //Creating array
 var names = ["Sam", "Abhi", "Shiva"];
 console.log(names);
+
+// Creating class
+
+class Car {
+    constructor(brand, modelName, price) {
+        this.brand = brand;
+        this.modelName = modelName;
+        this.price = price;
+    }
+
+    print() {
+        console.log("This is a " + this.brand + " " + this.modelName + ", which costs " + this.price);
+    }
+}
+
+var car1 = new Car("Tata", "Nexon", 1700000);
+car1.print();
+var car2 = new Car("BMW", "3-series", "4000000") // we can use different datatypes
+car2.print();
