@@ -9,12 +9,19 @@
 <body>
     <h1>Javascript Basic training</h1>
     <script>
-        var name = "Samiran"
+        var name = "Samiran" // Global variable
         var age = 25;
         var isGraduate = true;
         var laptop;
         laptop = "Asus"
         console.log(name);
+
+        function alertUser(){
+            var favChips = "Cream and Onion"; // Local variable
+            alert("This user is logged in" + name)
+        }
+        alertUser();
+        console.log(favChips); // This will give error as we trying to get local variable
     </script>
 </body>
 </html>
