@@ -44,3 +44,9 @@ function counting() {
     }
 }
 counting();
+
+var car = new Object();
+car.brand = "Tata";
+car.model = "Nexon";
+car.price = 1700000;
+console.log(car);
