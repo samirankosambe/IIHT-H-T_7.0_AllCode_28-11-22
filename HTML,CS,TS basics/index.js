@@ -120,3 +120,13 @@ let seasonalFruits = ["Mango", "Lichi"];
 
 let allFruits = [...fruits, ...seasonalFruits];
 console.log(allFruits);
+
+// arrow/inline function
+
+let count = () =>{
+    for (let i = 1; i <= 10; i++) {
+        console.log(i);;
+    }
+}
+
+count();
