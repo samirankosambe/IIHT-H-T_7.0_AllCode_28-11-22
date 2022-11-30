@@ -112,3 +112,11 @@ class MackBookPro extends AppleLaptops {
 
 let l1 = new MackBookPro("2021 15 Mackbook pro", "i7", 16);
 console.log(l1.brand + " " + l1.model + " " + l1.processor + " " + l1.ram);
+
+//Spread operator
+
+let fruits = ["Apple", "Banana", "Pineapple"];
+let seasonalFruits = ["Mango", "Lichi"];
+
+let allFruits = [...fruits, ...seasonalFruits];
+console.log(allFruits);
