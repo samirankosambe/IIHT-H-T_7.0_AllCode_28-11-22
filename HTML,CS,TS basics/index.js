@@ -123,10 +123,33 @@ console.log(allFruits);
 
 // arrow/inline function
 
-let count = () =>{
+let count = () => {
     for (let i = 1; i <= 10; i++) {
         console.log(i);;
     }
 }
 
 count();
+
+// There are three way to declare variables in javascript
+
+//var - this has block scope and it can be redefined, was announced with es6
+var num1 = 1000;
+var num1 = 2000;
+
+//let - this has block scope and it can be redefined in same scope
+let a = 100;
+//let a = 200; // this will give error
+function addNumbers() {
+    let a = 230; // this will not give error
+    let b = 200;
+    console.log(a + b);
+}
+
+addNumbers();
+console.log(a + 1000);
+
+//const - Vale cannot be changed. This has block scope and it can be redefined
+
+const c = 200;
+//c= 500;  this will give an error
