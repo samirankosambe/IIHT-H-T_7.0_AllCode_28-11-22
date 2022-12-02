@@ -25,16 +25,19 @@ public class TestCalculator {
 	
 	@Test
 	public void testSub() {
+		when(service.sub(10, 5)).thenReturn(5);
 		assertEquals(5, calculator.sub(10, 5));
 	}
 	
 	@Test
 	public void testDiv() {
+		when(service.div(10, 5)).thenReturn(2);
 		assertEquals(2, calculator.div(10, 5));
 	}
 	
 	@Test
 	public void testMultiply() {
+		when(service.multiply(10, 5)).thenReturn(50);
 		assertEquals(50, calculator.multiply(10, 5));
 	}
 
