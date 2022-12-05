@@ -6,47 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
 </head>
-<body style="margin-top: 50px; margin-left: 100px; margin-right: 100px; margin-bottom: 50px; background-color: blue;">
+<body style="margin-top: 50px; margin-left: 150px; margin-right: 150px; margin-bottom: 50px; background-color: blue;">
     <div style="background-color: white; border-radius: 5px;">
-        <h3 style="margin-left: 20px;">Registration</h3>
+        <h3 style="margin-left: 20px; padding-top: 20px;">Registration</h3>
         <h4 style="color: gray; margin-left: 20px;">Personal Details</h4>
 
-        <label for="fullname">Full Name</label>
-        <Label for="dob">Date of Birth</Label>
-        <label for="email">Email</label>
-        <br/>
-        <input type="text" id="text" name="text" placeholder="Enter you name">
-        <input type="text" id="text" name="text" placeholder="Enter birth date">
-        <input type="text" id="text" name="text" placeholder="Enter you email">
-        <br/>
-
-        <label for="mobileNumber">Mobile Number</label>
-        <Label for="gender">Gender</Label>
-        <label for="occupation">Occupation</label>
-        <br/>
-        <input type="text" id="text" name="text" placeholder="Enter mobile number">
-        <input type="text" id="text" name="text" placeholder="Enter your gender">
-        <input type="text" id="text" name="text" placeholder="Enter occupation">
-        <br/>
+        <table style="width:100%; margin-left: 20px;">
+            <tr>
+              <td>Full Name</td>
+              <td>Date of Birth</td>
+              <td>Email</td>
+            </tr>
+            <tr>
+              <td><input type="text" id="text" name="text" placeholder="Enter you name"></td>
+              <td><input type="text" id="text" name="text" placeholder="Enter birth date"></td>
+              <td><input type="text" id="text" name="text" placeholder="Enter you email"></td>
+            </tr>
+          </table>
+          <br/>
+          <table style="width:100%; margin-left: 20px;">
+            <tr>
+              <td>Mobile Number</td>
+              <td>Gender</td>
+              <td>Occupation</td>
+            </tr>
+            <tr>
+              <td><input type="text" id="text" name="text" placeholder="Enter mobile number"></td>
+              <td><input type="text" id="text" name="text" placeholder="Enter your gender"></td>
+              <td><input type="text" id="text" name="text" placeholder="Enter occupation"></td>
+            </tr>
+          </table>
 
         <h4 style="color: gray; margin-left: 20px;">Identify Details</h4>
-
-        <label for="idType">ID Type</label>
-        <Label for="idNumber">ID Number</Label>
-        <label for="issueAuthority">Issue Authority</label>
+        
+        <table style="width:100%; margin-left: 20px;">
+            <tr>
+              <td>ID Type</td>
+              <td>ID Number</td>
+              <td>Issue Authority</td>
+            </tr>
+            <tr>
+              <td><input type="text" id="text" name="text" placeholder="Enter ID type"></td>
+              <td><input type="text" id="text" name="text" placeholder="Enter ID number"></td>
+              <td><input type="text" id="text" name="text" placeholder="Enter issue department"></td>
+            </tr>
+          </table>
         <br/>
-        <input type="text" id="text" name="text" placeholder="Enter ID type">
-        <input type="text" id="text" name="text" placeholder="Enter ID number">
-        <input type="text" id="text" name="text" placeholder="Enter issue department">
-        <br/>
-
-        <label for="issueDate">Issue Date</label>
-        <Label for="issueState">Issue State</Label>
-        <label for="expiryDate">Expiry Date</label>
-        <br/>
-        <input type="text" id="issueDate" name="issueDate" placeholder="Enter ID issue date">
-        <input type="text" id="issueState" name="issueState" placeholder="Enter ID issue state">
-        <input type="text" id="expiryDate" name="expiryDate" placeholder="Enter ID expiry date">
+        <table style="width:100%; margin-left: 20px;">
+            <tr>
+              <td>Issue Date</td>
+              <td>Issue State</td>
+              <td>Expiry Date</td>
+            </tr>
+            <tr>
+              <td><input type="text" id="issueDate" name="issueDate" placeholder="Enter ID issue date"></td>
+              <td><input type="text" id="issueState" name="issueState" placeholder="Enter ID issue state"></td>
+              <td><input type="text" id="expiryDate" name="expiryDate" placeholder="Enter ID expiry date"></td>
+            </tr>
+          </table>
+        
 
     </div>
 </body>
