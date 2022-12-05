@@ -12,7 +12,7 @@
     <div style="background-color: white; border-radius: 5px;">
         <h3 style="margin-left: 20px; padding-top: 20px;">Registration</h3>
         <h4 style="color: gray; margin-left: 20px;">Personal Details</h4>
-        <form action="https://www.google.co.in/" method="post">
+        <form action="https://www.google.com/" method="get">
             <table style="width:100%; margin-left: 20px;">
                 <tr>
                     <td>Full Name</td>
@@ -101,7 +101,8 @@
                     console.log(issueDate);
                     console.log(issueState);
                     console.log(expiryDate);
-                    if (fullName != "" && expiryDate != "") {
+                    if (fullName != "" && dob != "" && email != "" && mobileNumber != "" && gender != "" && occupation != "" 
+                    && idType != "" && idNumber != "" && issueDept != "" && issueDate != "" && issueState != "" && expiryDate != "") {
                         window.open("https://www.google.co.in/");
                     }
                 }
