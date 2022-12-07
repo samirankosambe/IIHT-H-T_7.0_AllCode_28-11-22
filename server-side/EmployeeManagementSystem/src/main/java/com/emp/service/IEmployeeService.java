@@ -7,10 +7,12 @@ import com.emp.entity.Employee;
 
 public interface IEmployeeService {
 	Integer saveEmployee(Employee employee);
-	
+
 	List<Employee> getAllEmployees();
-	
+
 	Optional<Employee> getEmployee(Integer id);
-	
+
 	void deleteEmployee(Integer id);
+
+	Employee updateEmployee(Employee employee, Integer id);
 }
