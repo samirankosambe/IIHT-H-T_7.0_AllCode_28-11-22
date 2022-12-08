@@ -7,7 +7,7 @@ public class HR {
 	private Long userID;
 	private String name;
 	private String phone;
-	List<Resourse> resourses = new ArrayList<>();
+	List<Resource> resources = new ArrayList<>();
 	
 	public HR() {
 		super();
@@ -18,12 +18,12 @@ public class HR {
 		this.name = name;
 		this.phone = phone;
 	}
-	public HR(Long userID, String name, String phone, List<Resourse> resourses) {
+	public HR(Long userID, String name, String phone, List<Resource> resources) {
 		super();
 		this.userID = userID;
 		this.name = name;
 		this.phone = phone;
-		this.resourses = resourses;
+		this.resources = resources;
 	}
 	
 	public Long getUserID() {
@@ -44,11 +44,11 @@ public class HR {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public List<Resourse> getResourses() {
-		return resourses;
+	public List<Resource> getResources() {
+		return resources;
 	}
-	public void setResourses(List<Resourse> resourses) {
-		this.resourses = resourses;
+	public void setResourses(List<Resource> resources) {
+		this.resources = resources;
 	}
 	
 	

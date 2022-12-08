@@ -9,7 +9,8 @@ import com.hr.entity.HR;
 @Service
 public class HrServiceImpl implements IHrService {
 
-	List<HR> hrList = List.of(new HR(1001l, "Vivek", "8149593575"), 
+	List<HR> hrList = List.of(
+			new HR(1001l, "Vivek", "8149593575"), 
 			new HR(1002l, "Abhi", "8855050428"),
 			new HR(1003l, "Shiva", "8421595915"), 
 			new HR(1004l, "Jay", "9309511114"),
