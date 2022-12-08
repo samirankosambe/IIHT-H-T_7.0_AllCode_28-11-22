@@ -18,15 +18,15 @@ import com.hr.service.IHrService;
 public class HRController {
 
 	@Autowired
-	IHrService hrService;
+	private IHrService hrService;
 	
 	@Autowired
-	RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 
 	@GetMapping("/{userID}")
 	public HR getHr(@PathVariable Long userID) {
 		HR hr = hrService.getHr(userID);
-		List<Resource> resources = this.restTemplate.getForObject("http://localhost:5002/resource/hr/"+userID, List.class);
+		List resources = this.restTemplate.getForObject("http://resource-service/resource/hr/"+userID, List.class);
 		hr.setResourses(resources);
 		return hr;
 	}
