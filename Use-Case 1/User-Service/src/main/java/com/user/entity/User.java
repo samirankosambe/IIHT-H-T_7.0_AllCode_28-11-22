@@ -1,11 +1,24 @@
 package com.user.entity;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private Long userID;
+	@Column
 	private String username;
+	@Column
 	private String password;
+	@Column
 	private String email;
+	@Column
 	private String role;
 
 	public User() {

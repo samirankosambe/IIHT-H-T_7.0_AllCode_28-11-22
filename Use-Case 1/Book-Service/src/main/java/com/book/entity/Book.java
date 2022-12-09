@@ -2,17 +2,36 @@ package com.book.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Book {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "book_id")
 	private Long bookID;
+	@Column
 	private String logo;
+	@Column
 	private String title;
+	@Column
 	private String category;
+	@Column
 	private Long price;
+	@Column
 	private String author;
+	@Column
 	private String publisher;
+	@Column(name = "published_date")
 	private LocalDate publishedDate;
+	@Column
 	private String content;
+	@Column
 	private boolean active;
 
 	public Book() {
