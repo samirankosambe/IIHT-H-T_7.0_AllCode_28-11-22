@@ -32,6 +32,11 @@ public class LibraryController {
 	public Optional<Book> getBook(@PathVariable Long id) {
 		return libraryService.getBook(id);
 	}
+	
+	@GetMapping("read/name/{name}")
+	public Optional<Book> getBook(@PathVariable String name) {
+		return libraryService.getBookByName(name);
+	}
 
 	@GetMapping("allbooks")
 	public List<Book> getBook() {
@@ -44,8 +49,12 @@ public class LibraryController {
 	}
 	
 	@PutMapping("/borrow/{id}")
-	public ResponseEntity<Book> borrowBook(@PathVariable Long id) {
-		return new ResponseEntity<Book>(libraryService.changeStatus(id), HttpStatus.OK);
+	public ResponseEntity<?> borrowBook(@PathVariable Long id) {
+		Book book = libraryService.changeStatus(id);
+		if(book.getBookID() == 0L) {
+			return new ResponseEntity<>("Book is not available", HttpStatus.OK);
+		}
+		return new ResponseEntity<>(libraryService.changeStatus(id), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/remove/{id}")

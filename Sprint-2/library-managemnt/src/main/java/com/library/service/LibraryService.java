@@ -31,6 +31,11 @@ public class LibraryService implements ILibraryService {
 	public List<Book> getAllBooks() {
 		return libraryRepo.findAll();
 	}
+	
+	@Override
+	public Optional<Book> getBookByName(String name) {
+		return libraryRepo.findByName(name);
+	}
 
 	@Override
 	public Book updateBook(Book book, Long id) {
@@ -48,6 +53,10 @@ public class LibraryService implements ILibraryService {
 	public Book changeStatus(Long id) {
 		Book existingBook = libraryRepo.findById(id)
 				.orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", id));
+		if(existingBook.isStatus()) {
+			existingBook.setBookID(0L);
+			return existingBook;
+		}
 		existingBook.setStatus(true);
 		return libraryRepo.save(existingBook);
 	}

@@ -10,6 +10,8 @@ public interface ILibraryService {
 	Long createBook(Book book);
 
 	Optional<Book> getBook(Long id);
+	
+	Optional<Book> getBookByName(String name);
 
 	List<Book> getAllBooks();
 
