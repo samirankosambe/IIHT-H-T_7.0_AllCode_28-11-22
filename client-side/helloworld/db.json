@@ -20,6 +20,14 @@
       "age": 50,
       "email": "abhi@gmail.com",
       "id": 3
+    },
+    {
+      "firstname": "sam",
+      "lastname": "kosambe",
+      "age": 25,
+      "gender": "female",
+      "email": "sam@gmail.com",
+      "id": 4
     }
   ]
 }
