@@ -10,13 +10,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
+import { AboutComponent } from './Components/about/about.component';
+import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UserformComponent,
-    NavbarComponent
+    NavbarComponent,
+    AboutComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

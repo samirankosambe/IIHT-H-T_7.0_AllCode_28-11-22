@@ -1,5 +1,24 @@
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+<nav class="navbar navbar-expand-lg bg-light" style="border-color: gray; border-style: double;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">User Registration Application</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" style="color: white;">
+            <a class="nav-link active" aria-current="page" routerLink="" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="register">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
