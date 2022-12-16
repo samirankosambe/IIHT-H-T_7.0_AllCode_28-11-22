@@ -18,5 +18,9 @@ export class UserService {
     return this.http.post(BASE_URL, user);
   }
 
+  getUsers(){
+    return this.http.get(BASE_URL);
+  }
+
   constructor(private http: HttpClient) { }
 }
