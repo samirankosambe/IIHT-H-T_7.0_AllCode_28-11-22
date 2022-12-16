@@ -13,7 +13,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AboutComponent } from './Components/about/about.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import {HttpClientModule} from '@angular/common/http';
-import { RegUsersComponent } from './Components/reg-users/reg-users.component'
+import { RegUsersComponent } from './Components/reg-users/reg-users.component';
+import { PipesComponent } from './Components/pipes/pipes.component';
+import { EllipsisPipe } from './Pipe/ellipsis.pipe'
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RegUsersComponent } from './Components/reg-users/reg-users.component'
     NavbarComponent,
     AboutComponent,
     ContactUsComponent,
-    RegUsersComponent
+    RegUsersComponent,
+    PipesComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,
