@@ -13,6 +13,12 @@ export class RegUsersComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
+  sort(){
+    this.users.sort((user1, user2) => {
+      return user1.age -user2.age;
+    })
+  }
+
   deleteRow(user: any, index: any) {
     const observables = this.userService.deleteUsers(user);
     observables.subscribe((response: any) => {
