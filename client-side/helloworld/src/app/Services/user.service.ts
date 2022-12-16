@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import User from '../Entity/user';
 
 const BASE_URL = 'http://localhost:5000/users';
 
@@ -20,6 +21,10 @@ export class UserService {
 
   getUsers(){
     return this.http.get(BASE_URL);
+  }
+
+  deleteUsers(user: any){
+    return this.http.delete(BASE_URL + "/" + user.id);
   }
 
   constructor(private http: HttpClient) { }

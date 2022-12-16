@@ -1,25 +1,11 @@
-<h1 class="display-2" style="text-align: center; background-color: lavender; border-color: grey; border-style: double;">Registered Users</h1>
-
-<ol class="list-group list-group-numbered">
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold">Subheading</div>
-        Content for list item
-      </div>
-      <span class="badge bg-primary rounded-pill">14</span>
+<h1 class="display-2" style="text-align: center; background-color:lavender; border-color: grey; border-style: double;">
+    Registered Users</h1>
+<ol class="list-group list-group-numbered" style="padding-left: 100px; padding-right: 100px; padding-top: 50px;">
+    <li *ngFor="let user of users, index as i" class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">{{user.firstname}}</div>
+            {{user.email}}
+        </div>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteRow(user, i)">Delete</button>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold">Subheading</div>
-        Content for list item
-      </div>
-      <span class="badge bg-primary rounded-pill">14</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold">Subheading</div>
-        Content for list item
-      </div>
-      <span class="badge bg-primary rounded-pill">14</span>
-    </li>
-  </ol>
+</ol>
