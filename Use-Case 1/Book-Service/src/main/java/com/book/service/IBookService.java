@@ -22,7 +22,7 @@ public interface IBookService {
 	Book getBookbyId(Long bookID);
 	
 	//Reader can can subscription within 24hrs of subscription
-	String cancelSubscription(Integer subscriptionId);
+	boolean cancelSubscription(Long subscriptionId);
 
 	//Author can create a book
 	Long createBook(Book book, String username);

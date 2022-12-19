@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.book.entity.Book;
 import com.book.entity.Subscription;
 import com.book.exception.BookNotFoundExceptionHandler;
+import com.book.exception.SubscriptionNotFoundExceptionHandler;
 import com.book.repo.IBookRepo;
 import com.book.repo.ISubscriptionRepo;
 
@@ -98,9 +99,12 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
-	public String cancelSubscription(Integer subscriptionId) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean cancelSubscription(Long subscriptionId) {
+		Subscription subscription = subscriptionRepo.findById(subscriptionId).orElseThrow(()->new SubscriptionNotFoundExceptionHandler("id", subscriptionId));
+		subscription.setActive(false);
+		Subscription cancelledSubscription = subscriptionRepo.save(subscription);
+		
+		return cancelledSubscription.isActive();
 	}
 
 }
