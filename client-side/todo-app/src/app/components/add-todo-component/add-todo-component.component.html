@@ -1,0 +1,20 @@
+<div style="background-color: black;">
+
+    <figure class="text-center" style="padding: 40px; border-style: double; color: white; border-color: greenyellow;">
+        <blockquote class="blockquote">
+            <p>To-Do List</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Add or remove your todos
+        </figcaption>
+    </figure>
+
+    <div class="input-group input-group-lg" style="margin-left: 100px; margin-right: 100px; width: auto; border-style: solid; border-color: greenyellow; border-radius: 10px;">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Enter Your todos</span>
+        <input #todoItem type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-lg" placeholder="Enter your todos">
+    </div>
+
+    <button type="button" class="btn btn-outline-success" style="margin-left: 915px; margin-top: 20px;" (click) = "AddTodo(todoItem.value)">Add Todo</button>
+
+</div>

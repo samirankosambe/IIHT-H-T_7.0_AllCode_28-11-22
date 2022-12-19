@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { Todoreducer } from './reducers/todo.reducer';
 import { TodoComponentComponent } from './components/todo-component/todo-component.component';
+import { AddTodoComponentComponent } from './components/add-todo-component/add-todo-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponentComponent
+    TodoComponentComponent,
+    AddTodoComponentComponent
   ],
   imports: [
     BrowserModule,
