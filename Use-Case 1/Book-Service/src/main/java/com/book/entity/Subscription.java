@@ -12,13 +12,15 @@ public class Subscription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "subscription_id")
-	private Integer id;
+	private Long id;
 	@Column
 	private Long bookID;
 	@Column
-	private Integer userID;
+	private Long userID;
 	@Column
 	private LocalDateTime subscriptionDateTime;
+	@Column
+	private boolean active;
 	@Column
 	private String invoice;
 
@@ -26,28 +28,30 @@ public class Subscription {
 		super();
 	}
 
-	public Subscription(Long bookID, Integer userID, LocalDateTime subscriptionDateTime, String invoice) {
+	public Subscription(Long bookID, Long userID, LocalDateTime subscriptionDateTime, boolean active, String invoice) {
 		super();
 		this.bookID = bookID;
 		this.userID = userID;
 		this.subscriptionDateTime = subscriptionDateTime;
+		this.active = active;
 		this.invoice = invoice;
 	}
 
-	public Subscription(Integer id, Long bookID, Integer userID, LocalDateTime subscriptionDateTime, String invoice) {
+	public Subscription(Long id, Long bookID, Long userID, LocalDateTime subscriptionDateTime, boolean active, String invoice) {
 		super();
 		this.id = id;
 		this.bookID = bookID;
 		this.userID = userID;
 		this.subscriptionDateTime = subscriptionDateTime;
+		this.active = active;
 		this.invoice = invoice;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -59,11 +63,11 @@ public class Subscription {
 		this.bookID = bookID;
 	}
 
-	public Integer getUserID() {
+	public Long getUserID() {
 		return userID;
 	}
 
-	public void setUserID(Integer userID) {
+	public void setUserID(Long userID) {
 		this.userID = userID;
 	}
 
@@ -75,6 +79,14 @@ public class Subscription {
 		this.subscriptionDateTime = subscriptionDateTime;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 	public String getInvoice() {
 		return invoice;
 	}
@@ -86,7 +98,9 @@ public class Subscription {
 	@Override
 	public String toString() {
 		return "Subscription [id=" + id + ", bookID=" + bookID + ", userID=" + userID + ", subscriptionDateTime="
-				+ subscriptionDateTime + ", invoice=" + invoice + "]";
+				+ subscriptionDateTime + ", active=" + active + ", invoice=" + invoice + "]";
 	}
+
+	
 
 }
