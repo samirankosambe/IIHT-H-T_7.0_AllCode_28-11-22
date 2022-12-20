@@ -1,28 +1,32 @@
-<div style="margin-left: 200px; margin-right: 200px;">
+<div style="margin-left: 200px; margin-right: 200px; height: 750px; padding-top: 20px;">
     <h2 style="text-align: center;">{{title}}</h2>
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Name</span>
-        <input [(ngModel)] = "book.name" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
+    <div style="background-color: white; padding: 20px; border-style: solid; border-color:lightgrey; border-radius: 10px; border-width: 1px;">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Name</span>
+            <input [(ngModel)]="book.name" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" placeholder="Enter Book Name">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Author</span>
+            <input [(ngModel)]="book.author" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" placeholder="Enter Book Author">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Price</span>
+            <input [(ngModel)]="book.price" type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" placeholder="Enter Book Price">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Genre</span>
+            <input [(ngModel)]="book.genre" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" placeholder="Enter Book Genre">
+        </div>
+        <span>Borrowed</span>
+        <div class="input-group mb-3" style="margin-left: 20px; margin-top: 10px;">
+            <input [(ngModel)]="book.status" class="form-check-input mt-0" type="checkbox" value=""
+                aria-label="Checkbox for following text input">
+        </div>
+        <button (click)="save()" type="button" class="btn btn-primary btn-lg">Submit</button>
     </div>
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Author</span>
-        <input [(ngModel)] = "book.author" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Price</span>
-        <input [(ngModel)] = "book.price" type="number" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Genre</span>
-        <input [(ngModel)] = "book.genre" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
-    <span>Borrowed</span>
-    <div class="input-group mb-3" style="margin-left: 20px; margin-top: 10px;">
-          <input [(ngModel)] = "book.status" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-      </div>
-    <button (click) ="save()" type="button" class="btn btn-primary btn-lg">Submit</button>
+
 </div>
