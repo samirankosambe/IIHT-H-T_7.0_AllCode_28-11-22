@@ -18,7 +18,7 @@ export class BookService {
   }
 
   deleteBook(book: any){
-    return this.http.delete(BASE_URL + "/remove" + book.bookId);
+    return this.http.delete(BASE_URL + "/remove/" + book.id);
   }
 
   constructor(private http: HttpClient) { }
