@@ -19,7 +19,7 @@ import com.library.entity.Book;
 import com.library.service.ILibraryService;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin ("http://localhost:4200")
 public class LibraryController {
 
 	@Autowired
