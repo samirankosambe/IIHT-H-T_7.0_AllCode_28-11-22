@@ -14,6 +14,19 @@ export class AddBookComponent implements OnInit {
   book: Book = new Book();
 
   save(){
+    if(this.book.name == ""){
+      alert("Please add book name")
+    }
+
+    if(this.book.author == ""){
+      alert("Please add book author")
+    }
+    if(isNaN(this.book.price) || this.book.price <= 0 ){
+      alert("Please add book price")
+    }
+    if(this.book.genre == ""){
+      alert("Please add book genre")
+    }
     const observables = this.bookService.saveBook(this.book);
     observables.subscribe(
       (response: any) => {
