@@ -9,7 +9,7 @@ import { UserformComponent } from './Components/userform/userform.component';
 
 const routes: Routes = [{path: "", component:HomeComponent}, {path:"register", component:UserformComponent}
 , {path: "about", component:AboutComponent}, {path: "contact", component:ContactUsComponent}, 
-{path: "pipe", component:PipesComponent}];
+{path: "pipe", component:PipesComponent}, {path: "reg", component:RegUsersComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

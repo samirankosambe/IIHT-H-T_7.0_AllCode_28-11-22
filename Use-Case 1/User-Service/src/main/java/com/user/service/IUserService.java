@@ -10,7 +10,7 @@ public interface IUserService {
 	//Guest can login
 	boolean logIn(String username, String password);
 	
-	String getRoleByUserId(Long id);
+	String getRoleByUserId(Long userId);
 	
 
 }

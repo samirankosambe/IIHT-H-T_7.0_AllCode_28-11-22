@@ -14,20 +14,27 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public Long createAccountforUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		if(userRepo.findByUsername(user.getUsername()).isPresent()) {
+			return 0l;
+		}
+		User savedUser = userRepo.save(user);
+		return savedUser.getUserID();
 	}
 
 	@Override
 	public boolean logIn(String username, String password) {
-		// TODO Auto-generated method stub
-		return false;
+		User user =  userRepo.findByUsernameIDAndPassword(username, password);
+		if(user != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override
-	public String getRoleByUserId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getRoleByUserId(Long userId) {
+		return userRepo.getRoleByUserId(userId);
 	}
 
 }
