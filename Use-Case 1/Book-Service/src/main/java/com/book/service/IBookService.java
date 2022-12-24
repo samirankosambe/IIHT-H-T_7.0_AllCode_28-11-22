@@ -7,7 +7,7 @@ import com.book.entity.Book;
 public interface IBookService {
 	
 	// Guest, Reader and Author can search books
-	List<Book>searchBooks(String category, String title, String author, Long price);
+	List<Book> searchBooks(Book book);
 	
 	//Reader can subscribe a book
 	Long subscribe(Long userId, Long bookId);
@@ -16,23 +16,25 @@ public interface IBookService {
 	List<Book> getSubcribedBooksByUserId(Long userId);
 	
 	//Reader can fetch a subscribed book
-	Book getSubcribedBookByTitle(String title);
+	Book getBookBySubscriptionId(Long subscriptionId);
 	
 	//Reader can read a book content
-	Book getBookbyId(Long bookID);
+	String getBookContentBySubscriptionId(Long subscriptionId);
 	
-	//Reader can can subscription within 24hrs of subscription
+	//Reader can  cancel subscription within 24hrs of subscription
 	boolean cancelSubscription(Long subscriptionId);
 
 	//Author can create a book
-	Long createBook(Book book, String username);
+	Long createBook(Book book);
 
 	//Author can edit a book
-	Book editBook(Book book, String username, Long bookID);
+	Book editBook(Book book, Long bookID);
 	
 	//Author can block/unblock a book
 	boolean editStatusofBook(Long bookID);
 	
 	boolean getBookStatus(Long bookId);
+
+	Book getBookbyId(Long bookID);
 
 }

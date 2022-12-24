@@ -20,26 +20,73 @@ public class BookServiceImpl implements IBookService {
 
 	@Autowired
 	IBookRepo bookRepo;
-	
+
 	@Autowired
 	ISubscriptionRepo subscriptionRepo;
 
 	@Override
-	public List<Book> searchBooks(String category, String title, String author, Long price) {
-		return bookRepo.searchBooks(category, title, author, price, true);
+	public List<Book> searchBooks(Book book) {
+		return bookRepo.searchBooks(book.getCategory(), book.getTitle(), book.getAuthor(), book.getPrice(), book.getPublisher(), true);
+	}
+	
+	@Override
+	public Long subscribe(Long userId, Long bookId) {
+		Book book = bookRepo.findById(bookId).orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", bookId));
+		Subscription subscription = new Subscription();
+		subscription.setBookID(bookId);
+		subscription.setUserID(userId);
+		subscription.setSubscriptionDateTime(LocalDateTime.now());
+		subscription.setActive(true);
+		subscription.setInvoice("The full amount for the book is: " + book.getPrice() + ". The Book is subcribed on: " + LocalDateTime.now());
+		Subscription newSubscription = subscriptionRepo.save(subscription);
+		return newSubscription.getId();
 	}
 
 	@Override
-	public Long createBook(Book book, String username) {		
+	public List<Book> getSubcribedBooksByUserId(Long userId) {
+		List<Subscription> subscriptions = subscriptionRepo.findByUserID(userId);
+		List<Book> books = new ArrayList<>();
+		subscriptions.stream().forEach(subcription -> books.add(bookRepo.findById(subcription.getUserID()).get()));
+		return books;
+	}
+	
+	@Override
+	public Book getBookBySubscriptionId(Long subscriptionId) {
+		Subscription subscription = subscriptionRepo.findById(subscriptionId)
+				.orElseThrow(() -> new SubscriptionNotFoundExceptionHandler("id", subscriptionId));
+		Book book = bookRepo.findById(subscription.getBookID()).orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", subscription.getBookID()));
+		return book;
+	}
+
+	@Override
+	public String getBookContentBySubscriptionId(Long subscriptionId) {
+		Subscription subscription = subscriptionRepo.findById(subscriptionId)
+				.orElseThrow(() -> new SubscriptionNotFoundExceptionHandler("id", subscriptionId));
+		Book book = bookRepo.findById(subscription.getBookID()).orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", subscription.getBookID()));
+		return book.getContent();
+	}
+
+	@Override
+	public boolean cancelSubscription(Long subscriptionId) {
+		Subscription subscription = subscriptionRepo.findById(subscriptionId)
+				.orElseThrow(() -> new SubscriptionNotFoundExceptionHandler("id", subscriptionId));
+		subscription.setActive(false);
+		Subscription cancelledSubscription = subscriptionRepo.save(subscription);
+
+		return cancelledSubscription.isActive();
+	}
+
+	@Override
+	public Long createBook(Book book) {
 		book.setPublishedDate(LocalDate.now());
-		book.setPublisher(username);
 		Book newBook = bookRepo.save(book);
 		return newBook.getBookID();
 	}
-
+	
 	@Override
-	public Book editBook(Book book, String username, Long bookID) {
-		Book existingBook = bookRepo.findById(bookID).orElseThrow(()->new BookNotFoundExceptionHandler("Book", "id", bookID));
+	public Book editBook(Book book, Long bookId) {
+		Book existingBook = bookRepo.findById(bookId)
+				.orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", bookId));
 		existingBook.setLogo(book.getLogo());
 		existingBook.setTitle(book.getTitle());
 		existingBook.setCategory(book.getCategory());
@@ -54,8 +101,9 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
-	public boolean editStatusofBook(Long bookID) {
-		Book existingBook = bookRepo.findById(bookID).orElseThrow(()->new BookNotFoundExceptionHandler("Book", "id", bookID));
+	public boolean editStatusofBook(Long bookId) {
+		Book existingBook = bookRepo.findById(bookId)
+				.orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", bookId));
 		existingBook.setActive(!existingBook.isActive());
 		bookRepo.save(existingBook);
 		return existingBook.isActive();
@@ -63,48 +111,15 @@ public class BookServiceImpl implements IBookService {
 
 	@Override
 	public boolean getBookStatus(Long bookID) {
-		Book existingBook = bookRepo.findById(bookID).orElseThrow(()->new BookNotFoundExceptionHandler("Book", "id", bookID));
+		Book existingBook = bookRepo.findById(bookID)
+				.orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", bookID));
 		return existingBook.isActive();
 	}
 
 	@Override
 	public Book getBookbyId(Long bookID) {
-		Book book = bookRepo.findById(bookID).orElseThrow(()->new BookNotFoundExceptionHandler("Book", "id", bookID));
+		Book book = bookRepo.findById(bookID).orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", bookID));
 		return book;
-	}
-
-
-	@Override
-	public Long subscribe(Long userId, Long bookId) {
-		Subscription subscription = new Subscription();
-		subscription.setBookID(bookId);
-		subscription.setUserID(userId);
-		subscription.setSubscriptionDateTime(LocalDateTime.now());
-		subscription.setActive(true);
-		Subscription newSubscription = subscriptionRepo.save(subscription);
-		return newSubscription.getId();
-	}
-
-	@Override
-	public Book getSubcribedBookByTitle(String title) {
-		return bookRepo.findByTitle(title);
-	}
-
-	@Override
-	public List<Book> getSubcribedBooksByUserId(Long userId) {
-		List<Subscription> subscriptions = subscriptionRepo.findByUserID(userId);
-		List<Book> books = new ArrayList<>();
-		subscriptions.stream().forEach(subcription -> books.add(bookRepo.findById(subcription.getUserID()).get()));
-		return books;
-	}
-
-	@Override
-	public boolean cancelSubscription(Long subscriptionId) {
-		Subscription subscription = subscriptionRepo.findById(subscriptionId).orElseThrow(()->new SubscriptionNotFoundExceptionHandler("id", subscriptionId));
-		subscription.setActive(false);
-		Subscription cancelledSubscription = subscriptionRepo.save(subscription);
-		
-		return cancelledSubscription.isActive();
 	}
 
 }

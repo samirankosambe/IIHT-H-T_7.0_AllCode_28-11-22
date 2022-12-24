@@ -1,29 +1,19 @@
-package com.book.entity;
+package com.user.models;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
 public class Subscription {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "subscription_id")
 	private Long id;
-	@Column
 	private Long bookID;
-	@Column
 	private Long userID;
-	@Column
 	private LocalDateTime subscriptionDateTime;
-	@Column
 	private boolean active;
-	@Column
 	private String invoice;
 
 	public Subscription() {
@@ -106,3 +96,4 @@ public class Subscription {
 	
 
 }
+
