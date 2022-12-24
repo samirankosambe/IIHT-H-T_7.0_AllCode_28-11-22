@@ -79,22 +79,21 @@ public class UserController {
 
 	// To get the content of a book subscribed by Reader
 	@GetMapping("/reader/{userId}/books/{subscriptionId}/read")
-	public String getSubscribedBookContent(@PathVariable("userId") Integer userId,
-			@PathVariable("subscriptionId") Integer subscriptionId) {
+	public String getSubscribedBookContent(@PathVariable("userId") Long userId,
+			@PathVariable("subscriptionId") Long subscriptionId) {
 		String content = restTemplate.getForObject(BASE_URL + "/subscribedBook/" + subscriptionId + "/read", String.class);
 		return content;
 	}
 
 	// To Cancel subscription of a book by reader within 24hrs
-	@GetMapping("/reader/{userId}/books/{subscriptionId}/cancel-subscription")
+	@PostMapping("/reader/{userId}/books/{subscriptionId}/cancelSubscription")
 	public boolean cancelSubscription(@PathVariable("userId") Long userId, @PathVariable("subscriptionId") Long subscriptionId) {
-		boolean cancelled = restTemplate.getForObject(BASE_URL + "/cancelSubscription/" + subscriptionId, boolean.class);
-		return cancelled;
+		return restTemplate.getForObject(BASE_URL + "/cancelSubscription/" + subscriptionId, boolean.class);
 	}
-
+	
 	// To add a book by author
 	@PostMapping("/author/{authorID}/books")
-	public Long createBook(@PathVariable("authorID") String userID, @RequestBody Book book) {
+	public Long createBook(@PathVariable("authorID") Long userID, @RequestBody Book book) {
 		Long bookId = restTemplate.postForObject(BASE_URL + "/add", book, Long.class);
 		return bookId;
 	}

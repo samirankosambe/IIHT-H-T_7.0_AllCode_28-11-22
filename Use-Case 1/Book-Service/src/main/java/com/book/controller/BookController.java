@@ -64,8 +64,8 @@ public class BookController {
 	}
 	
 	@GetMapping("/cancelSubscription/{subscriptionId}")
-	public void updateSubscriptionStatus(@PathVariable("subscriptionId") Long subscriptionId) {
-		bookService.cancelSubscription(subscriptionId);
+	public boolean updateSubscriptionStatus(@PathVariable("subscriptionId") Long subscriptionId) {
+		return bookService.cancelSubscription(subscriptionId);
 	}
 	
 	@PostMapping("/add")
