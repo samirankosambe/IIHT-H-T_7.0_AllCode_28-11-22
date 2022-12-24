@@ -1,5 +1,6 @@
 package com.book.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.book.entity.Book;
+import com.book.entity.Subscription;
+import com.book.models.BookSubscription;
 import com.book.service.IBookService;
 
 @RestController
@@ -35,14 +38,24 @@ public class BookController {
 	}
 	
 	@GetMapping("/booksSubscribedById/{userId}")
-	public List<Book> getListofBooksSubscribed(@PathVariable("userId") Long userId){
-		List<Book> books = bookService.getSubcribedBooksByUserId(userId);
-		return books;
+	public List<BookSubscription> getListofBooksSubscribed(@PathVariable("userId") Long userId){
+		List<Subscription> subcriptions = bookService.getSubcribedBooksByUserId(userId);
+		List<BookSubscription> bookSubscriptions = new ArrayList<>();
+		for(Subscription subscription : subcriptions) {
+			Book book = bookService.getBookbyId(subscription.getBookID());
+			bookSubscriptions.add(new BookSubscription
+					(book.getBookID(), subscription.getId(), subscription.getUserID(), book.getTitle(), book.getCategory(), book.getPrice(), book.getAuthor(), book.getPublisher()));
+		}
+		return bookSubscriptions;
 	}
 	
 	@GetMapping("/subscribedBook/{subscriptionId}")
-	public Book bookSubscribed(@PathVariable("subscriptionId") Long subscriptionId) {
-		return bookService.getBookBySubscriptionId(subscriptionId);
+	public BookSubscription bookSubscribed(@PathVariable("subscriptionId") Long subscriptionId) {
+		Subscription subscription = bookService.getBookBySubscriptionId(subscriptionId);
+		Book book = bookService.getBookbyId(subscription.getBookID());
+		return new BookSubscription
+				(book.getBookID(), subscription.getId(), subscription.getUserID(), book.getTitle(), book.getCategory(), book.getPrice(), book.getAuthor(), book.getPublisher());
+		
 	}
 	
 	@GetMapping("/subscribedBook/{subscriptionId}/read")
@@ -50,23 +63,28 @@ public class BookController {
 		return bookService.getBookContentBySubscriptionId(subscriptionId);
 	}
 	
-	@PutMapping("/cancelSubscription/{subscriptionId}")
+	@GetMapping("/cancelSubscription/{subscriptionId}")
 	public void updateSubscriptionStatus(@PathVariable("subscriptionId") Long subscriptionId) {
 		bookService.cancelSubscription(subscriptionId);
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> createBook(@RequestBody Book book) {
-		return new ResponseEntity<>(bookService.createBook(book), HttpStatus.OK);
+	public Long createBook(@RequestBody Book book) {
+		return bookService.createBook(book);
 	}
 	@PutMapping("/update/{bookId}")
-	public ResponseEntity<?> updateBook(@PathVariable("bookId") Long bookId, @RequestBody Book book) {
-		return new ResponseEntity<>(bookService.editBook(book, bookId), HttpStatus.OK);
+	public Book updateBook(@PathVariable("bookId") Long bookId, @RequestBody Book book) {
+		return bookService.editBook(book, bookId);
 	}
 	
-	@PostMapping("/changeBookStatus/{bookID}")
+	@GetMapping("/changeBookStatus/{bookID}")
 	public boolean changeBookStatus(@PathVariable("bookID") Long bookID) throws Exception{
 		return bookService.editStatusofBook(bookID);
+	}
+	
+	@GetMapping("get/all")
+	public List<Book> getBooks(){
+		return bookService.getAllBooks();
 	}
 		
 }

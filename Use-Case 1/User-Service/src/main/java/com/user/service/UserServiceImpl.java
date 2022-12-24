@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean logIn(String username, String password) {
-		User user =  userRepo.findByUsernameIDAndPassword(username, password);
+		User user =  userRepo.findByUsernameAndPassword(username, password);
 		if(user != null) {
 			return true;
 		}

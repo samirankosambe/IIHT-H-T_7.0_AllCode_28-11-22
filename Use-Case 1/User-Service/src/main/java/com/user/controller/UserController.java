@@ -18,11 +18,11 @@ import org.springframework.web.client.RestTemplate;
 
 import com.user.entity.User;
 import com.user.models.Book;
+import com.user.models.BookSubscription;
 import com.user.service.IUserService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/digitalbooks")
 public class UserController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class UserController {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	public static final String BASE_URL = "http://localhost:5001";
+	public static final String BASE_URL = "http://BOOK-SERVICE";
 
 	// Create account for new user
 	@PostMapping("/sign-up")
@@ -64,16 +64,16 @@ public class UserController {
 
 	// To fetch all the books subscribed by Reader
 	@GetMapping("/reader/{userId}/books")
-	public List<Book> getListofBooksSuscribed(@PathVariable("userId") Long userId) {
-		@SuppressWarnings("unchecked")
-		List<Book> books = restTemplate.getForObject(BASE_URL + "/booksSubscribedbyId/" + userId, List.class);
+	public List<BookSubscription> getListofBooksSuscribed(@PathVariable("userId") Long userId) {
+		List<BookSubscription> books = restTemplate.getForObject(BASE_URL + "/booksSubscribedById/" + userId, List.class);
 		return books;
 	}
 
 	// To fetch a specific book subscribed by Reader
 	@GetMapping("/reader/{userId}/books/{subscriptionId}")
-	public Book getSubscribedBook(@PathVariable("userId") Long userId, @PathVariable("subscriptionId") Long subscriptionId) {
-		Book book = restTemplate.getForObject(BASE_URL + "/subscribedBook/" + subscriptionId, Book.class);
+	public BookSubscription getSubscribedBook(@PathVariable("userId") Long userId,
+			@PathVariable("subscriptionId") Long subscriptionId) {
+		BookSubscription book = restTemplate.getForObject(BASE_URL + "/subscribedBook/" + subscriptionId, BookSubscription.class);
 		return book;
 	}
 
@@ -81,24 +81,21 @@ public class UserController {
 	@GetMapping("/reader/{userId}/books/{subscriptionId}/read")
 	public String getSubscribedBookContent(@PathVariable("userId") Integer userId,
 			@PathVariable("subscriptionId") Integer subscriptionId) {
-		String content = restTemplate.getForObject(BASE_URL + "/subscribedBook/" + subscriptionId + "/read",
-				String.class);
+		String content = restTemplate.getForObject(BASE_URL + "/subscribedBook/" + subscriptionId + "/read", String.class);
 		return content;
 	}
 
-	// TO Cancel subscription of a book by reader within 24hrs
-	@PostMapping("/readers/{userId}/books/{subscriptionId}/read/cancel-subscription")
-	public ResponseEntity<?> cancelSubscription(@PathVariable("userId") Long userId,
-			@PathVariable("subscriptionId") Long subscriptionId) {
-		boolean cancelled = restTemplate.getForObject(BASE_URL + "/getUserBookData/" + userId + "/" + subscriptionId,
-				boolean.class);
-		return new ResponseEntity<>(cancelled, HttpStatus.OK);
+	// To Cancel subscription of a book by reader within 24hrs
+	@GetMapping("/reader/{userId}/books/{subscriptionId}/cancel-subscription")
+	public boolean cancelSubscription(@PathVariable("userId") Long userId, @PathVariable("subscriptionId") Long subscriptionId) {
+		boolean cancelled = restTemplate.getForObject(BASE_URL + "/cancelSubscription/" + subscriptionId, boolean.class);
+		return cancelled;
 	}
 
-	// TO add a book by author
+	// To add a book by author
 	@PostMapping("/author/{authorID}/books")
 	public Long createBook(@PathVariable("authorID") String userID, @RequestBody Book book) {
-		Long bookId = restTemplate.postForObject(BASE_URL + "/create/" + userID, book, Long.class);
+		Long bookId = restTemplate.postForObject(BASE_URL + "/add", book, Long.class);
 		return bookId;
 	}
 
@@ -106,15 +103,18 @@ public class UserController {
 	@PutMapping("/author/{authorID}/books/{bookID}")
 	public void editBook(@PathVariable("authorID") Long userID, @PathVariable("bookID") Long bookID,
 			@RequestBody Book book) throws Exception {
-		restTemplate.put(BASE_URL + "/edit/" + userID + "/" + bookID, book);
+		restTemplate.put(BASE_URL + "/update/" + bookID, book, Book.class);
 	}
 
 	// To change the status of book
 	@PostMapping("/author/{authorID}/books/{bookID}/changeStatus")
-	public ResponseEntity<?> changeBookStatus(@PathVariable("authorID") Long userID,
-			@PathVariable("bookID") Long bookID) throws Exception {
-		return new ResponseEntity<String>(
-				restTemplate.postForObject(BASE_URL + "/changeBookStatus/" + bookID, null, String.class),
-				HttpStatus.OK);
+	public boolean changeBookStatus(@PathVariable("authorID") Long userID, @PathVariable("bookID") Long bookID)
+			throws Exception {
+		return restTemplate.getForObject(BASE_URL + "/changeBookStatus/" + bookID, boolean.class);
+	}
+	
+	@GetMapping("/print")
+	public List<Book> hello(){
+		return restTemplate.getForObject(BASE_URL +"/get/all", List.class);
 	}
 }

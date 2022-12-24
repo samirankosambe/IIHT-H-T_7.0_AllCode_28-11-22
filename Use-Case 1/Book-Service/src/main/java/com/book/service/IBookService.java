@@ -3,6 +3,7 @@ package com.book.service;
 import java.util.List;
 
 import com.book.entity.Book;
+import com.book.entity.Subscription;
 
 public interface IBookService {
 	
@@ -13,10 +14,10 @@ public interface IBookService {
 	Long subscribe(Long userId, Long bookId);
 	
 	//Reader can fetch all subscribed books
-	List<Book> getSubcribedBooksByUserId(Long userId);
+	List<Subscription> getSubcribedBooksByUserId(Long userId);
 	
 	//Reader can fetch a subscribed book
-	Book getBookBySubscriptionId(Long subscriptionId);
+	Subscription getBookBySubscriptionId(Long subscriptionId);
 	
 	//Reader can read a book content
 	String getBookContentBySubscriptionId(Long subscriptionId);
@@ -36,5 +37,7 @@ public interface IBookService {
 	boolean getBookStatus(Long bookId);
 
 	Book getBookbyId(Long bookID);
+	
+	List<Book> getAllBooks();
 
 }

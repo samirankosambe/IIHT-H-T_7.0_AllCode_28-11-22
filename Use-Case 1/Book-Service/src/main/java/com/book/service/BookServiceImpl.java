@@ -1,8 +1,8 @@
 package com.book.service;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,19 +43,15 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
-	public List<Book> getSubcribedBooksByUserId(Long userId) {
-		List<Subscription> subscriptions = subscriptionRepo.findByUserID(userId);
-		List<Book> books = new ArrayList<>();
-		subscriptions.stream().forEach(subcription -> books.add(bookRepo.findById(subcription.getUserID()).get()));
-		return books;
+	public List<Subscription> getSubcribedBooksByUserId(Long userId) {
+		return subscriptionRepo.findByUserID(userId);
+		
 	}
 	
 	@Override
-	public Book getBookBySubscriptionId(Long subscriptionId) {
-		Subscription subscription = subscriptionRepo.findById(subscriptionId)
+	public Subscription getBookBySubscriptionId(Long subscriptionId) {
+		return subscriptionRepo.findById(subscriptionId)
 				.orElseThrow(() -> new SubscriptionNotFoundExceptionHandler("id", subscriptionId));
-		Book book = bookRepo.findById(subscription.getBookID()).orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", subscription.getBookID()));
-		return book;
 	}
 
 	@Override
@@ -70,9 +66,12 @@ public class BookServiceImpl implements IBookService {
 	public boolean cancelSubscription(Long subscriptionId) {
 		Subscription subscription = subscriptionRepo.findById(subscriptionId)
 				.orElseThrow(() -> new SubscriptionNotFoundExceptionHandler("id", subscriptionId));
-		subscription.setActive(false);
-		Subscription cancelledSubscription = subscriptionRepo.save(subscription);
-
+		Duration duration = Duration.between(subscription.getSubscriptionDateTime(), LocalDateTime.now());
+		Subscription cancelledSubscription = subscription;
+		if(duration.toHours() <= 24) {
+			subscription.setActive(false);
+			cancelledSubscription = subscriptionRepo.save(subscription);
+		}
 		return cancelledSubscription.isActive();
 	}
 
@@ -120,6 +119,11 @@ public class BookServiceImpl implements IBookService {
 	public Book getBookbyId(Long bookID) {
 		Book book = bookRepo.findById(bookID).orElseThrow(() -> new BookNotFoundExceptionHandler("Book", "id", bookID));
 		return book;
+	}
+
+	@Override
+	public List<Book> getAllBooks() {
+		return bookRepo.findAll();
 	}
 
 }
