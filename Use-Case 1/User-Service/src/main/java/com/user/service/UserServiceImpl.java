@@ -22,17 +22,6 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean logIn(String username, String password) {
-		User user =  userRepo.findByUsernameAndPassword(username, password);
-		if(user != null) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	@Override
 	public String getRoleByUserId(Long userId) {
 		return userRepo.getRoleByUserId(userId);
 	}

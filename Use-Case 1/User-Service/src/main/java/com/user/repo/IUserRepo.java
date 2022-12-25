@@ -14,8 +14,6 @@ public interface IUserRepo extends JpaRepository<User, Long> {
 	
 	Optional<User> findByUsername(String username);
 	
-	User findByUsernameAndPassword(String username, String password);
-	
 	@Query("select u.role from User u where u.userID =:userId")
 	String getRoleByUserId(@Param("userId") Long userId);
 	
