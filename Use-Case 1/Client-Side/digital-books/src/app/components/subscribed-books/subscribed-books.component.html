@@ -12,11 +12,11 @@
                     blocked
                     by the Author</div>
             </div>
-            <button [disabled]="book.active == false" class="btn btn-outline-success" type="submit"
+            <button [disabled]="book.active == false" class="btn btn-outline-primary" type="submit"
                 (click)="viewContentofBook(book.subscriptionID)">
                 view content
             </button>
-            <button class="btn btn-outline-success" type="submit" *ngIf="book.active"
+            <button class="btn btn-outline-primary" type="submit" *ngIf="book.active"
                 (click)="unSubscribe(jwtService.getUserid(),book.subscriptionID,i)">
                 unsubscribe
             </button>

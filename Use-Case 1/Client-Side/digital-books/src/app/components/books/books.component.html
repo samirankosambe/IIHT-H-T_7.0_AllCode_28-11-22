@@ -10,14 +10,18 @@
                 </div>
                 Price: {{book.price | currency:'INR'}} id:{{book.bookID}}
             </div>
-            <button class="btn btn-outline-success" type="submit" (click)="editBook(jwtService.getUserid(),book.bookID)"
-                style="margin-right: 5px;">
+            <button class="btn btn-outline-primary" type="submit" (click)="editBook(jwtService.getUserid(),book.bookID)"
+                style="margin-right: 5px;" >
                 Edit Book
             </button>
-            <button class="btn btn-outline-success" type="submit"
-                (click)="changeBookStatus(jwtService.getUserid(),book.bookID)">
-                Update Status
+            <button class="btn btn-outline-danger" type="submit"
+                (click)="changeBookStatus(jwtService.getUserid(),book.bookID)" *ngIf="!book.active">
+                Inactive
             </button>
+            <button class="btn btn-outline-primary" type="submit"
+            (click)="changeBookStatus(jwtService.getUserid(),book.bookID)" *ngIf="book.active">
+            Active
+        </button>
         </li>
         <div *ngIf="!(errorMessage == '') && !isBookFound" class="alert alert-danger" role="alert">{{ errorMessage }}
         </div>

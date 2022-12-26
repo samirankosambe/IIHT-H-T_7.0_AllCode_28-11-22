@@ -61,9 +61,6 @@ export class BooksComponent implements OnInit {
   changeBookStatus(authorID: string, bookId: number) {
     const promise = this.userService.changeStatusOfBook(parseInt(authorID), bookId);
     promise.subscribe((response) => {
-      const prevStatus = (response) == 'true' ? 'Inactive' : 'Active';
-      const currStatus = (response) == 'true' ? 'Active' : 'Inactive';
-      alert('Status of book is changed from ' + prevStatus + ' to ' + currStatus);
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(["books"]);
       });
