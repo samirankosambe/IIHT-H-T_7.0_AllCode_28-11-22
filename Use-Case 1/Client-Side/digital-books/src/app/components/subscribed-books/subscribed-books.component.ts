@@ -12,45 +12,41 @@ import { UserService } from 'src/app/services/user.service';
 export class SubscribedBooksComponent implements OnInit {
 
   user: User = new User();
-  books:BookSubscription[];
+  books: BookSubscription[];
   subscribId: number;
   subscribDt: Date;
   popupOpen: boolean = false;
 
-  unSubscribe(userID,subscriptionId,index){
-    const promise = this.userService.unSubscribeBook(userID,subscriptionId);
-    promise.subscribe((response)=>{
-     // console.log(response);
-      if(response == 'Cancelled Subscription'){
-          this.books.splice(index,1);
+  unSubscribe(userID, subscriptionId, index) {
+    const promise = this.userService.unSubscribeBook(userID, subscriptionId);
+    promise.subscribe((response) => {
+      if (response == 'Cancelled Subscription') {
+        this.books.splice(index, 1);
       }
-    },(error)=>{
+    }, (error) => {
       console.log(error);
-      
+
     })
   }
 
-  viewContentofBook(subscriptionid:number){
-    console.log(subscriptionid);
-    
+  viewContentofBook(subscriptionid: number) {
     const promise = this.userService.viewContent(this.jwtService.getUserid(), subscriptionid);
-    promise.subscribe((response)=>{
-    console.log(response);
+    promise.subscribe((response) => {
       alert(response);
-     },(error)=>{
-       console.log(error);
-       
-     })
+    }, (error) => {
+      console.log(error);
+
+    })
   }
 
-  viewInvoice(subscriptionDt,subscriptionId){
-    console.log(subscriptionDt+"   "+subscriptionId);
+  viewInvoice(subscriptionDt, subscriptionId) {
+    console.log(subscriptionDt + "   " + subscriptionId);
     this.subscribDt = subscriptionDt;
     this.subscribId = subscriptionId;
     this.popupOpen = true;
   }
 
-  closePopup(){
+  closePopup() {
     this.popupOpen = false;
   }
 

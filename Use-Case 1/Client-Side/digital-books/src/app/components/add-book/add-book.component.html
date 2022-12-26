@@ -1,8 +1,8 @@
 <div style="margin-left: 600px; margin-right: 600px; height: 750px; padding-top: 20px; text-align: center; ">
     <h1 style="text-align: center;">Add a Book</h1>
-    <form name="addBookForm" #addBookForm="ngForm"
-        (ngSubmit)="validate(addBookForm)" novalidate>
-        <div style="background-color: white; padding: 20px; border-style: solid; border-color:#0f3274; border-radius: 10px; border-width: 1px;">
+    <form name="addBookForm" #addBookForm="ngForm" (ngSubmit)="validate(addBookForm)" novalidate>
+        <div
+            style="background-color: white; padding: 20px; border-style: solid; border-color:#0f3274; border-radius: 10px; border-width: 1px;">
             <div class="alert alert-success m-b-46" *ngIf="isBookCreated">
                 Book is added Succesfully.
             </div>
@@ -34,15 +34,18 @@
                 <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Price</span>
                 <input type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" id="price" name="price" ngModel required
-                    placeholder="Price of Book" #price="ngModel" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    placeholder="Price of Book" #price="ngModel"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
-            <div class="input-group input-group-sm mb-3" data-validate="Please enter Publisher name" style="height: 36px;">
+            <div class="input-group input-group-sm mb-3" data-validate="Please enter Publisher name"
+                style="height: 36px;">
                 <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Publisher</span>
                 <input type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" id="publisher" name="publisher" ngModel required
                     placeholder="Publisher of Book" #publisher="ngModel">
             </div>
-            <div class="input-group input-group-sm mb-3" data-validate="Please enter Content of Book" style="height: 36px;">
+            <div class="input-group input-group-sm mb-3" data-validate="Please enter Content of Book"
+                style="height: 36px;">
                 <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Content</span>
                 <input type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" id="content" name="content" ngModel required
@@ -51,13 +54,13 @@
             <div class="p-l-10 m-b-30 txt2">
                 <div class="m-b-5">Status of book</div>
                 <div class="form-check form-check-inline">
-                    <input #active="ngModel" class="form-check-input" type="radio" name="active" id="Active" value="true"
-                        ngModel required>
+                    <input #active="ngModel" class="form-check-input" type="radio" name="active" id="Active"
+                        value="true" ngModel required>
                     <label class="form-check-label" for="Active">Active</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="active" id="Inactive" value="false" required ngModel
-                        #active="ngModel">
+                    <input class="form-check-input" type="radio" name="active" id="Inactive" value="false" required
+                        ngModel #active="ngModel">
                     <label class="form-check-label" for="Inactive">Inactive</label>
                 </div>
             </div>

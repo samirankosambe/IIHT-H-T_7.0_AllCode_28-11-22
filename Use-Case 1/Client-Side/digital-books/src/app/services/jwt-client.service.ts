@@ -50,17 +50,17 @@ export class JwtClientService {
     }
   }
 
-  isLoggedIn(role){
+  isLoggedIn(role) {
     let token = this.getToken();
-    if(token == undefined || token === '' || token == null || !this.roleMatch(role)){
+    if (token == undefined || token === '' || token == null || !this.roleMatch(role)) {
       return false;
     }
-    else{
+    else {
       return true;
     }
   }
 
-  logout(){
+  logout() {
     window.sessionStorage.removeItem('token');
   }
 

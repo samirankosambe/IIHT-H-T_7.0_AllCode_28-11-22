@@ -10,15 +10,15 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-    if(this.jwtService.isLoggedIn(route.data['role'] as string)){
+
+    if (this.jwtService.isLoggedIn(route.data['role'] as string)) {
       return true;
     }
     this.router.navigate(['login'])
     alert("You are not allowed to access this page");
-      return false;
+    return false;
   }
 
-  constructor(private jwtService: JwtClientService, private router: Router){}
-  
+  constructor(private jwtService: JwtClientService, private router: Router) { }
+
 }

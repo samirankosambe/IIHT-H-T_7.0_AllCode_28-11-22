@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  navSelected: string=location.href.split('/')[location.href.split('/').length-1];
+  navSelected: string = location.href.split('/')[location.href.split('/').length - 1];
   public isLoggedIn() {
     return this.jwtService.getToken();
   }
@@ -19,10 +19,10 @@ export class NavbarComponent implements OnInit {
     window.sessionStorage.clear();
     this.router.navigate(['']);
   }
-  
+
   constructor(private router: Router,
-              public userService: UserService,
-              private jwtService: JwtClientService) { }
+    public userService: UserService,
+    private jwtService: JwtClientService) { }
 
   ngOnInit(): void {
   }

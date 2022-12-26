@@ -8,12 +8,12 @@ import { JwtClientService } from "../services/jwt-client.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+
         if (req.headers.get("No-Auth") == 'True') {
             return next.handle(req.clone());
         }
         const token = this.jwtService.getToken();
-        
+
         req = this.addToken(req, token);
         return next.handle(req).pipe(
             catchError(
@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private addToken(req: HttpRequest<any>, token: string) {
         return req.clone({
             setHeaders: {
-               Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`
             }
         });
     }

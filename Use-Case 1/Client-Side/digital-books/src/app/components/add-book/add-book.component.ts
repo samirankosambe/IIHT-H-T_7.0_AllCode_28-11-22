@@ -22,45 +22,42 @@ export class AddBookComponent implements OnInit {
   content: string;
   logo: string;
   releaseDate: Date;
-  isBookCreated: boolean=false;
- 
-  validate(addBookForm:NgForm) {
-    if(addBookForm.valid){
+  isBookCreated: boolean = false;
+
+  validate(addBookForm: NgForm) {
+    if (addBookForm.valid) {
       this.addBook(addBookForm);
-    }else{
+    } else {
       alert("Please fill all the values");
     }
   }
 
-
-  addBook(addBookForm:NgForm){
-    this.book =addBookForm.value;
+  addBook(addBookForm: NgForm) {
+    this.book = addBookForm.value;
     console.log(this.book);
     console.log(this.jwtService.getUserid());
     console.log(this.jwtService.getRole());
-    
-    
-   // this.book.logo=this.base64;
-    const promise = this.userService.addBook(parseInt(this.jwtService.getUserid()),this.book);
-    promise.subscribe((response:any)=>{
+
+
+    const promise = this.userService.addBook(parseInt(this.jwtService.getUserid()), this.book);
+    promise.subscribe((response: any) => {
       console.log(response);
       this.isBookCreated = true;
       alert('Book is added succesfully.');
-         this.router.navigate(['books']);
+      this.router.navigate(['books']);
 
-    },function(error){
+    }, function (error) {
       console.log(error);
       alert("Something went wrong, please try again later");
     });
   }
 
-
   constructor(private jwtService: JwtClientService,
-    private userService:UserService,
-    private router: Router) {}
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
 
 }

@@ -31,7 +31,7 @@ export class UserService {
 
   searchBooks(queryParam: string) {
     console.log(queryParam);
-    
+
     return this.http.get(USER_URL + "/search?" + queryParam);
   }
 
@@ -41,8 +41,8 @@ export class UserService {
   }
 
   getListofSubscribedBooks(user: User) {
-    
-    return this.http.get(USER_URL + "/readers/" + user.userID+ "/books");
+
+    return this.http.get(USER_URL + "/readers/" + user.userID + "/books");
   }
 
   getSubscribedBook(user: User, subscriptionId: number) {
@@ -54,12 +54,12 @@ export class UserService {
   }
 
   unSubscribeBook(userID: number, subscriptionId: number) {
-    return this.http.post(USER_URL + "/readers/" + userID + "/books/" + subscriptionId + "/cancel-subscription", '', { responseType: "text" });
+    return this.http.post(USER_URL + "/readers/" + userID + "/books/" + subscriptionId + "/cancelSubscription", '', { responseType: "text" });
   }
 
   addBook(userId: number, book: Book) {
     console.log(book);
-    
+
     return this.http.post(USER_URL + "/author/" + userId + "/books", book, { responseType: "text" })
   }
 
@@ -68,7 +68,7 @@ export class UserService {
   }
 
   editBook(authorId: number, bookId: number, book: Book) {
-    return this.http.put(USER_URL + "/author/" + authorId + "/books/" + bookId, book, {responseType:"text"});
+    return this.http.put(USER_URL + "/author/" + authorId + "/books/" + bookId, book, { responseType: "text" });
   }
 
   getBookByID(bookId: number) {

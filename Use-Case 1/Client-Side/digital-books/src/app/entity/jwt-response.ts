@@ -1,5 +1,5 @@
-export class JwtResponse{
+export class JwtResponse {
     username: string;
     role: string
-    token:string;
+    token: string;
 }
