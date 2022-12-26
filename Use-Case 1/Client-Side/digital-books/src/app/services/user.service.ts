@@ -41,6 +41,7 @@ export class UserService {
   }
 
   getListofSubscribedBooks(user: User) {
+    
     return this.http.get(USER_URL + "/readers/" + user.userID+ "/books");
   }
 
@@ -48,7 +49,7 @@ export class UserService {
     return this.http.get(USER_URL + "/readers/" + user.userID + "/books" + subscriptionId);
   }
 
-  viewContent(userId: number, subscriptionId: number) {
+  viewContent(userId: string, subscriptionId: number) {
     return this.http.get(USER_URL + "/readers/" + userId + "/books/" + subscriptionId + "/read", { responseType: "text" });
   }
 

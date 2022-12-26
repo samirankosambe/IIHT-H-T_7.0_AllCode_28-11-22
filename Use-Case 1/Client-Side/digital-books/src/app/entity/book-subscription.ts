@@ -1,10 +1,11 @@
 export class BookSubscription{
-    bookid: number = 0;
-    subscriptionid: number = 0;
-    userid: number = 0;
+    bookID: number = 0;
+    subscriptionID: number = 0;
+    userID: number = 0;
     title: string ="";
     category: string ="";
-    priceid: number = 0;
+    price: number = 0;
     author: string ="";
     publisher: string ="";
+    active: boolean = true;
 }

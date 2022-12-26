@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BookSubscription } from 'src/app/entity/book-subscription';
 import { User } from 'src/app/entity/user';
 import { JwtClientService } from 'src/app/services/jwt-client.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,8 +12,10 @@ import { UserService } from 'src/app/services/user.service';
 export class SubscribedBooksComponent implements OnInit {
 
   user: User = new User();
-  books:any[];
- 
+  books:BookSubscription[];
+  subscribId: number;
+  subscribDt: Date;
+  popupOpen: boolean = false;
 
   unSubscribe(userID,subscriptionId,index){
     const promise = this.userService.unSubscribeBook(userID,subscriptionId);
@@ -27,8 +30,28 @@ export class SubscribedBooksComponent implements OnInit {
     })
   }
 
-  viewContentofBook(content:string){
-    window.open(content, 'blank');
+  viewContentofBook(subscriptionid:number){
+    console.log(subscriptionid);
+    
+    const promise = this.userService.viewContent(this.jwtService.getUserid(), subscriptionid);
+    promise.subscribe((response)=>{
+    console.log(response);
+      alert(response);
+     },(error)=>{
+       console.log(error);
+       
+     })
+  }
+
+  viewInvoice(subscriptionDt,subscriptionId){
+    console.log(subscriptionDt+"   "+subscriptionId);
+    this.subscribDt = subscriptionDt;
+    this.subscribId = subscriptionId;
+    this.popupOpen = true;
+  }
+
+  closePopup(){
+    this.popupOpen = false;
   }
 
   constructor(private userService: UserService,
@@ -36,9 +59,8 @@ export class SubscribedBooksComponent implements OnInit {
     this.user.userID = parseInt(this.jwtService.getUserid());
     const promise = this.userService.getListofSubscribedBooks(this.user);
     promise.subscribe((response: any) => {
-      //console.log(response);
-      response = JSON.parse(JSON.stringify(response));
-      this.books = response.map(elem => JSON.parse(elem));
+      console.log(response);
+      this.books = response;
     }, (error) => {
       console.log(error);
 
@@ -47,6 +69,5 @@ export class SubscribedBooksComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 
 }

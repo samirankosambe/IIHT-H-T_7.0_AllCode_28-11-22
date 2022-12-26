@@ -9,11 +9,12 @@ public class BookSubscription {
 	private Long price;
 	private String author;
 	private String publisher;
+	private boolean active;
 	public BookSubscription() {
 		super();
 	}
 	public BookSubscription(Long bookID, Long subscriptionID, Long userID, String title, String category, Long price,
-			String author, String publisher) {
+			String author, String publisher, boolean active) {
 		super();
 		this.bookID = bookID;
 		SubscriptionID = subscriptionID;
@@ -23,6 +24,13 @@ public class BookSubscription {
 		this.price = price;
 		this.author = author;
 		this.publisher = publisher;
+		this.active = active;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	public Long getBookID() {
 		return bookID;
@@ -76,7 +84,8 @@ public class BookSubscription {
 	public String toString() {
 		return "BookSubscription [bookID=" + bookID + ", SubscriptionID=" + SubscriptionID + ", userID=" + userID
 				+ ", title=" + title + ", category=" + category + ", price=" + price + ", author=" + author
-				+ ", publisher=" + publisher + "]";
+				+ ", publisher=" + publisher + ", active=" + active + "]";
 	}
+	
 	
 }

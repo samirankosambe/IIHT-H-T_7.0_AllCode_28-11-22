@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/entity/book';
 import { User } from 'src/app/entity/user';
 import { JwtClientService } from 'src/app/services/jwt-client.service';
@@ -57,14 +58,17 @@ export class SearchComponent implements OnInit {
   }
 
   subscribeBook(bookid: number){
+    console.log(bookid);
+    
     if(this.jwtService.getUserid() != null){
       this.user.userID = parseInt(this.jwtService.getUserid());
       const promise = this.userService.subscribeBooks(this.user,bookid);
       promise.subscribe((response:any)=>{
-        //console.log(response);
+        
         if(response == 0){
           this.isSubscribed = true; 
         }
+        this.router.navigate(['subscribed']);
       },function(error){
         console.log(error);
         alert("Something went wrong, please try again later");
@@ -75,7 +79,7 @@ export class SearchComponent implements OnInit {
   }
 
   constructor(private userService: UserService,
-    public jwtService: JwtClientService) {
+    public jwtService: JwtClientService, private router: Router) {
       }
 
 

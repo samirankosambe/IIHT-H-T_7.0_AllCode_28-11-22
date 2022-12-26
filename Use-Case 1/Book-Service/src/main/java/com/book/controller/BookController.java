@@ -42,7 +42,7 @@ public class BookController {
 		for(Subscription subscription : subcriptions) {
 			Book book = bookService.getBookbyId(subscription.getBookID());
 			bookSubscriptions.add(new BookSubscription
-					(book.getBookID(), subscription.getId(), subscription.getUserID(), book.getTitle(), book.getCategory(), book.getPrice(), book.getAuthor(), book.getPublisher()));
+					(book.getBookID(), subscription.getId(), subscription.getUserID(), book.getTitle(), book.getCategory(), book.getPrice(), book.getAuthor(), book.getPublisher(), (subscription.isActive() && book.isActive())));
 		}
 		return bookSubscriptions;
 	}
@@ -52,7 +52,7 @@ public class BookController {
 		Subscription subscription = bookService.getBookBySubscriptionId(subscriptionId);
 		Book book = bookService.getBookbyId(subscription.getBookID());
 		return new BookSubscription
-				(book.getBookID(), subscription.getId(), subscription.getUserID(), book.getTitle(), book.getCategory(), book.getPrice(), book.getAuthor(), book.getPublisher());
+				(book.getBookID(), subscription.getId(), subscription.getUserID(), book.getTitle(), book.getCategory(), book.getPrice(), book.getAuthor(), book.getPublisher(), true);
 		
 	}
 	
