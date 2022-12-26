@@ -32,6 +32,7 @@
       <button type="button" *ngIf="!isLoggedIn()" class="btn btn-outline-light" routerLink="signup">Sign Up</button>
       <button type="button" *ngIf="!isLoggedIn()" class="btn btn-outline-light" routerLink="login"
         style="margin-left: 10px;">Sign In</button>
+        <label for="user" *ngIf="isLoggedIn()" style="color: white; margin-right: 10px;">@{{username}}</label>
       <button type="button" *ngIf="isLoggedIn()" class="btn btn-danger" (click)="logout()">Logout</button>
     </div>
   </div>

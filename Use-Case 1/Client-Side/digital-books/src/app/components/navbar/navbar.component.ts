@@ -10,8 +10,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
+  username: string;
+
   navSelected: string = location.href.split('/')[location.href.split('/').length - 1];
   public isLoggedIn() {
+    this.username = this.jwtService.getUsername();
     return this.jwtService.getToken();
   }
 
