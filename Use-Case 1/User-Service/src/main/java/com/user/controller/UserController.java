@@ -36,10 +36,10 @@ public class UserController {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Autowired
 	private JWTUtility jwtUtility;
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -55,9 +55,9 @@ public class UserController {
 
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			final String token = jwtUtility.generateToken(authentication);
-			String role = authentication.getAuthorities().stream().map(item -> item.getAuthority()).findFirst().get();
-			return new JwtResponse(token, jwtRequest.getUsername(), role);
-			
+			User user = userService.findByUsername(jwtRequest.getUsername());
+			return new JwtResponse(token, user);
+
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS");
 		}
@@ -86,9 +86,9 @@ public class UserController {
 	}
 
 	// To subscribe a book
-	@PostMapping("/readers/subscribe/{userId}/{bookId}")
-	public Long subscribeBook(@PathVariable("userId") Long userId, @PathVariable("bookId") Long bookId) {
-		return restTemplate.getForObject(BASE_URL + "/subscribe/" + bookId + "/" + userId, Long.class);
+	@PostMapping("/readers/{bookId}/subscribe")
+	public Long subscribeBook(@RequestBody User user, @PathVariable("bookId") Long bookId) {
+		return restTemplate.getForObject(BASE_URL + "/subscribe/" + bookId + "/" + user.getUserID(), Long.class);
 
 	}
 
@@ -146,5 +146,13 @@ public class UserController {
 	public boolean changeBookStatus(@PathVariable("authorID") Long userID, @PathVariable("bookID") Long bookID)
 			throws Exception {
 		return restTemplate.getForObject(BASE_URL + "/changeBookStatus/" + bookID, boolean.class);
+	}
+
+	// To get all books created by author
+	@GetMapping("/author/{author}/getbooks")
+	public List<Book> getAllAuthorBook(@PathVariable("author") String username) {
+		@SuppressWarnings("unchecked")
+		List<Book> books = restTemplate.getForObject(BASE_URL + "/get/books/" + username, List.class);
+		return books;
 	}
 }

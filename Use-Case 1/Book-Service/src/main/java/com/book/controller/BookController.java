@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +24,8 @@ public class BookController {
 	@Autowired
 	IBookService bookService;
 	
-	@GetMapping("/search")
-	public List<Book> searchBooks(Book book) {
+	@PostMapping("/search")
+	public List<Book> searchBooks(@RequestBody Book book) {
 		List<Book> books = bookService.searchBooks(book);
 		return books;
 	}
@@ -80,6 +78,11 @@ public class BookController {
 	@GetMapping("/changeBookStatus/{bookID}")
 	public boolean changeBookStatus(@PathVariable("bookID") Long bookID) throws Exception{
 		return bookService.editStatusofBook(bookID);
+	}
+	
+	@GetMapping("/get/books/{author}")
+	public List<Book> getAllBooksByAuthor(@PathVariable("authorid") String author){
+		return bookService.getAllBooksByAuthor(author);
 	}
 	
 	@GetMapping("get/all")

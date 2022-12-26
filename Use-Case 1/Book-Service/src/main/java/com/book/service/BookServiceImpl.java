@@ -126,4 +126,9 @@ public class BookServiceImpl implements IBookService {
 		return bookRepo.findAll();
 	}
 
+	@Override
+	public List<Book> getAllBooksByAuthor(String author) {
+		return bookRepo.findByAuthor(author);
+	}
+
 }

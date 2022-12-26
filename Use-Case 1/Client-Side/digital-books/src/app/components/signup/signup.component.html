@@ -1,1 +1,53 @@
-<p>signup works!</p>
+<div style="margin-left: 600px; margin-right: 600px; height: 750px; padding-top: 20px; text-align: center; ">
+    <h1 style="text-align: center;">Sign up to Digital Books</h1>
+    <form *ngIf="!isSignUpSuccess" class="login100-form validate-form p-l-55 p-r-55 p-t-178" #signupForm="ngForm"
+        (ngSubmit)="validate(signupForm)" novalidate>
+        <div
+            style="background-color: white; padding: 20px; border-style: solid; border-color:#0f3274; border-radius: 10px; border-width: 1px;">
+            <div class="input-group input-group-sm mb-3" data-validate="Please enter username" style="height: 36px;">
+                <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Username</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" id="username" name="username" ngModel required
+                    placeholder="Please enter username" #username="ngModel" [(ngModel)]="form.username" minlength="3"
+                    maxlength="20">
+            </div>
+            <div class="input-group input-group-sm mb-3" data-validate="Please enter email of the user" style="height: 36px;">
+                <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Email</span>
+                <input type="email" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" id="email" name="email" ngModel required
+                    placeholder="Email of the User" #email="ngModel" [(ngModel)]="form.email">
+            </div>
+
+            <div class="input-group input-group-sm mb-3" data-validate="Please enter password" style="height: 36px;">
+                <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Password</span>
+                <input type="password" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" id="password" name="password" #password="ngModel"
+                    [(ngModel)]="form.password" minlength="6" maxlength="20" ngModel placeholder=" Enter Password"
+                    required>
+            </div>
+            <span style="margin-right: 8px;">Role of the user </span>
+            <div class="form-check form-check-inline">
+                <input #role="ngModel" class="form-check-input" type="radio" name="role" id="author" value="Author"
+                    ngModel required>
+                <label class="form-check-label" for="author">Author</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="role" id="reader" value="Reader" required ngModel
+                    #role="ngModel">
+                <label class="form-check-label" for="reader">Reader</label>
+            </div>
+
+            <button class="login100-form-btn" type="submit" [disabled]="!signupForm.valid">
+                Sign Up
+            </button>
+            <div class="flex-col-c p-t-27 p-b-40">
+                <span class="txt1 p-b-9">
+                    Already have an account?
+                </span>
+                <a class="txt3" routerLink="../login">Sign in now
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>

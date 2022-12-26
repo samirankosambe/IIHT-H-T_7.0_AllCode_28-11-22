@@ -3,6 +3,7 @@ package com.user.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -44,11 +45,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
-		http.csrf()
+		http
+		.csrf()
 		.disable()
 		.authorizeRequests()
-		.antMatchers("/sign-in")
-		.permitAll()
+		.antMatchers("/author/**").hasRole("Author")
+		.antMatchers("/readers/**").hasRole("Reader")
+		.antMatchers("/**").permitAll()
+		.antMatchers(HttpHeaders.ALLOW).permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()

@@ -1,17 +1,17 @@
 package com.user.models;
 
+import com.user.entity.User;
+
 public class JwtResponse {
 	private String jwtToken;
-	private String username;
-	private String role;
+	private User user;
 	public JwtResponse() {
 		super();
 	}
-	public JwtResponse(String jwtToken, String username, String role) {
+	public JwtResponse(String jwtToken, User user) {
 		super();
 		this.jwtToken = jwtToken;
-		this.username = username;
-		this.role = role;
+		this.user = user;
 	}
 	public String getJwtToken() {
 		return jwtToken;
@@ -19,17 +19,13 @@ public class JwtResponse {
 	public void setJwtToken(String jwtToken) {
 		this.jwtToken = jwtToken;
 	}
-	public String getUsername() {
-		return username;
+	public User getUser() {
+		return user;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
+	
 	
 }

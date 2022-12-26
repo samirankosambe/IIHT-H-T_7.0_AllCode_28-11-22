@@ -26,4 +26,9 @@ public class UserServiceImpl implements IUserService {
 		return userRepo.getRoleByUserId(userId);
 	}
 
+	@Override
+	public User findByUsername(String username) {
+		return userRepo.findByUsername(username).get();
+	}
+
 }

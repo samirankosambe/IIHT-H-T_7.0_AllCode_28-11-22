@@ -8,7 +8,6 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { BooksComponent } from './components/books/books.component';
@@ -23,7 +22,6 @@ import { SubscribedBooksComponent } from './components/subscribed-books/subscrib
     NavbarComponent,
     SignupComponent,
     FooterComponent,
-    HeaderComponent,
     SearchComponent,
     AddBookComponent,
     BooksComponent,

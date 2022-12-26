@@ -34,6 +34,8 @@ public interface IBookService {
 	//Author can block/unblock a book
 	boolean editStatusofBook(Long bookID);
 	
+	List<Book> getAllBooksByAuthor(String author);
+	
 	boolean getBookStatus(Long bookId);
 
 	Book getBookbyId(Long bookID);

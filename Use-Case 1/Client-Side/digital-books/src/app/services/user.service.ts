@@ -30,20 +30,22 @@ export class UserService {
   }
 
   searchBooks(queryParam: string) {
+    console.log(queryParam);
+    
     return this.http.get(USER_URL + "/search?" + queryParam);
   }
 
   //  To subscribe a book
   subscribeBooks(user: User, bookid: number) {
-    return this.http.post(USER_URL + "/readers/" + bookid + "/subscribingBook", user);
+    return this.http.post(USER_URL + "/readers/" + bookid + "/subscribe", user);
   }
 
   getListofSubscribedBooks(user: User) {
-    return this.http.get(USER_URL + "/readers/" + user.userid + "/books");
+    return this.http.get(USER_URL + "/readers/" + user.userID+ "/books");
   }
 
   getSubscribedBook(user: User, subscriptionId: number) {
-    return this.http.get(USER_URL + "/readers/" + user.userid + "/books" + subscriptionId);
+    return this.http.get(USER_URL + "/readers/" + user.userID + "/books" + subscriptionId);
   }
 
   viewContent(userId: number, subscriptionId: number) {
@@ -58,8 +60,8 @@ export class UserService {
     return this.http.post(USER_URL + "/author/" + userId + "/books", book, { responseType: "text" })
   }
 
-  getAllAuthorBooks(authorId: number) {
-    return this.http.get(USER_URL + "/author/" + authorId + "/getbooks");
+  getAllAuthorBooks(author: string) {
+    return this.http.get(USER_URL + "/author/" + author + "/getbooks");
   }
 
   editBook(authorId: number, bookId: number, book: Book) {

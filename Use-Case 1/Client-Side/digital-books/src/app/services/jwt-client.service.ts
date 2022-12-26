@@ -23,12 +23,20 @@ export class JwtClientService {
     window.sessionStorage.setItem('role', role);
   }
 
-  public setUserid(userid: string) {
-    window.sessionStorage.setItem('userid', userid);
+  public setUsername(userid: string) {
+    window.sessionStorage.setItem('username', userid);
+  }
+
+  public getUsername() {
+    return window.sessionStorage.getItem('username');
   }
 
   public getUserid() {
     return window.sessionStorage.getItem('userid');
+  }
+
+  public setUserid(userid: string) {
+    window.sessionStorage.setItem('userid', userid);
   }
 
   public roleMatch(allowedRole: any): boolean {
