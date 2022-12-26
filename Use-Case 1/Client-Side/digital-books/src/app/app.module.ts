@@ -12,8 +12,10 @@ import { SearchComponent } from './components/search/search.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { BooksComponent } from './components/books/books.component';
 import { LoginComponent } from './components/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SubscribedBooksComponent } from './components/subscribed-books/subscribed-books.component';
+import { AuthInterceptor } from './guard/auth.intercepter';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,15 @@ import { SubscribedBooksComponent } from './components/subscribed-books/subscrib
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      useClass : AuthInterceptor,
+      provide : HTTP_INTERCEPTORS,
+      multi : true
+    },
+    UserService
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

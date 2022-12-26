@@ -45,16 +45,12 @@ export class BooksComponent implements OnInit {
   }
 
   submitEditedBook(book:Book){
-   // this.book =editBookForm.value;
-    const promise = this.userService.editBook(parseInt(this.jwtService.getUserid()),book.bookid,book);
+    const promise = this.userService.editBook(parseInt(this.jwtService.getUserid()),book.bookID,book);
     promise.subscribe((response:any)=>{
-     // console.log(response);
       this.isBookEdited = true;
       this.editBookFlg = false;
-     // editBookForm.resetForm();
-    // window.location.reload();
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(()=>{
-      this.router.navigate(["getAuthorBooks"]);
+      this.router.navigate(['books']);
     });
     },function(error){
       console.log(error);
@@ -65,9 +61,11 @@ export class BooksComponent implements OnInit {
   changeBookStatus(authorID:string,bookId:number){
     const promise = this.userService.changeStatusOfBook(parseInt(authorID),bookId);
     promise.subscribe((response)=>{
-      //console.log(response);
+      const prevStatus = (response) == 'true' ? 'Inactive' : 'Active';
+      const currStatus = (response) == 'true' ? 'Active' : 'Inactive';
+      alert('Status of book is changed from '+prevStatus+' to '+currStatus);
        this.router.navigateByUrl('/', { skipLocationChange: true }).then(()=>{
-        this.router.navigate(["getAuthorBooks"]);
+        this.router.navigate(["books"]);
       });
     },(error)=>{
       console.log(error);
@@ -82,6 +80,7 @@ export class BooksComponent implements OnInit {
       promise.subscribe((response:any)=>{
         if(response.length > 0){
           this.books = response;
+
           this.isBookFound = true;
         }else{
           this.errorMessage = 'No Books Found';

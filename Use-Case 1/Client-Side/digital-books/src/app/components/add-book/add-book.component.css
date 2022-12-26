@@ -1,15 +1,5 @@
-.container-login100-form-btn {
-    width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .login100-form-btn {
+.login100-form-btn[disabled]{pointer-events:none;cursor:not-allowed;background-color: lightsteelblue;}
+.login100-form-btn {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -17,10 +7,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
-    width: 100%;
-    height: 50px;
-    background-color: #57b846;
+    width: 20%;
+    height: 30px;
+    background-color: #0f3274;
     border-radius: 25px; 
     font-family: Ubuntu-Bold;
     font-size: 15px;
@@ -32,6 +21,9 @@
     -moz-transition: all 0.4s;
     transition: all 0.4s;
     border: none;
+    justify-content: center;
+    position: relative;
+    left: 40%;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
-  .login100-form-btn[disabled]{pointer-events:none;cursor:not-allowed;background-color: #b9e5b2;}
-  .wrap-login100 {width:600px;}

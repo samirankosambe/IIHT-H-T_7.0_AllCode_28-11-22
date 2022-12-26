@@ -18,7 +18,7 @@ export class AddBookComponent implements OnInit {
   author: string;
   price: number;
   publisher: string;
-  active: string;
+  active: boolean;
   content: string;
   logo: string;
   releaseDate: Date;
@@ -35,15 +35,19 @@ export class AddBookComponent implements OnInit {
 
   addBook(addBookForm:NgForm){
     this.book =addBookForm.value;
+    console.log(this.book);
+    console.log(this.jwtService.getUserid());
+    console.log(this.jwtService.getRole());
+    
+    
    // this.book.logo=this.base64;
     const promise = this.userService.addBook(parseInt(this.jwtService.getUserid()),this.book);
     promise.subscribe((response:any)=>{
-      //console.log(response);
+      console.log(response);
       this.isBookCreated = true;
       alert('Book is added succesfully.');
-       this.router.navigateByUrl('/', { skipLocationChange: true }).then(()=>{
-         this.router.navigate(["addBook"]);
-       });
+         this.router.navigate(['books']);
+
     },function(error){
       console.log(error);
       alert("Something went wrong, please try again later");

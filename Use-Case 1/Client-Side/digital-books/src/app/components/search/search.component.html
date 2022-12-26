@@ -1,4 +1,4 @@
-<div class="container" style="margin-bottom: 60px;">
+<div class="container">
     <form name="searchBookForm" #searchForm="ngForm" (ngSubmit)="validate(searchForm)">
         <h1 style="text-align: center;">Search a book</h1>
         <div class="form-floating mb-3">
@@ -46,8 +46,8 @@
                 Price: {{book.price | currency:'INR'}}
               </div>
             <div class="" *ngIf="!(jwtService.getRole() == 'Author')">
-                <button class="subscribe login100-form-btn" type="button" [disabled]="!isLoggedIn" id="{{book.bookid}}"
-                    (click)="subscribeBook(book.bookid)">
+                <button class="subscribe login100-form-btn" type="button" [disabled]="!isLoggedIn" id="{{book.bookID}}"
+                    (click)="subscribeBook(book.bookID)">
                     Subscribe
                 </button>
             </div>

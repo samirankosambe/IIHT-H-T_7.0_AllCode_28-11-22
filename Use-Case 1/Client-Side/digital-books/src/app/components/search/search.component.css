@@ -1,4 +1,4 @@
-.container{width:80%;}
+.container{width:50%;}
 .container-login100-form-btn {
     width: 100%;
     display: -webkit-box;
@@ -8,6 +8,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 100px;
   }
   
   .login100-form-btn {
@@ -37,4 +38,4 @@
   .subscribe.login100-form-btn{
     width: 100%;
   }
-  .login100-form-btn[disabled]{pointer-events:none;cursor:not-allowed;background-color: #0f3274;}
+  .login100-form-btn[disabled]{pointer-events:none;cursor:not-allowed;background-color: lightsteelblue;}

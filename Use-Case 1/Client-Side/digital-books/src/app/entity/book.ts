@@ -1,5 +1,5 @@
 export class Book{
-    bookid: number = 0;
+    bookID: number = 0;
 	logo: string = "";
 	title: string = "";
 	category: string = "";

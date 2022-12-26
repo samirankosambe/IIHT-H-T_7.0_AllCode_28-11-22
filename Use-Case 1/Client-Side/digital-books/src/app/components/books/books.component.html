@@ -1,1 +1,88 @@
-<p>books works!</p>
+<div class="container" *ngIf="!editBookStatus && !editBookFlg" style="width: 80%;">
+    <h1 style="text-align: center;">List of Books added</h1>
+
+    <ol class="list-group list-group-numbered" style="width: 80%;">
+
+        <li *ngFor="let book of books;let i = index" [ngClass]="{inactive: book.active}"
+            class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class=""><b>{{book.title | uppercase}}</b> <small> by </small><b>{{book.author | titlecase}}</b>
+                </div>
+                Price: {{book.price | currency:'INR'}}  id:{{book.bookID}}
+            </div>
+            <button class="btn btn-outline-success" type="submit"
+                (click)="editBook(jwtService.getUserid(),book.bookID)" style="margin-right: 5px;">
+                Edit Book
+            </button>
+            <button class="btn btn-outline-success" type="submit"
+                (click)="changeBookStatus(jwtService.getUserid(),book.bookID)">
+                Update Status
+            </button>
+        </li>
+        <div *ngIf="!(errorMessage == '') && !isBookFound" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+    </ol>
+</div>
+
+<div style="margin-left: 600px; margin-right: 600px; height: 750px; padding-top: 20px; text-align: center; " *ngIf="!editBookStatus && editBookFlg">
+    <h1 style="text-align: center;">Edit a Book</h1>
+            <form name="editBookForm" #editBookForm="ngForm"
+                (ngSubmit)="validate(editBookForm)" novalidate>
+
+                <div class="alert alert-success m-b-46" *ngIf="isBookEdited">
+                    Book is added Succesfully.
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter logo" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Logo</span>
+                    <input type="url" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="logo" name="logo" ngModel required
+                        placeholder="URL of Logo" #logo="ngModel" [(ngModel)]="book.logo">
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter title" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Title</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="title" name="title" ngModel required
+                        placeholder="Title of Book" #title="ngModel" [(ngModel)]="book.title">
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter category" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Category</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="category" name="category" ngModel required
+                        placeholder="Category of Book" #category="ngModel" [(ngModel)]="book.category">
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter Author" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Author</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="author" name="author" ngModel required
+                        placeholder="Author of Book" #author="ngModel" [(ngModel)]="book.author">
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter Price" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Price</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="price" name="price" ngModel required [(ngModel)]="book.price"
+                        placeholder="Price of Book" #price="ngModel" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter Publisher name" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Publisher</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="publisher" name="publisher" ngModel required
+                        placeholder="Publisher of Book" #publisher="ngModel" [(ngModel)]="book.publisher">
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter Content of Book" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Content</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="content" name="content" ngModel required 
+                        placeholder="Content of Book" #content="ngModel" [(ngModel)]="book.content">
+                </div>
+                <div class="input-group input-group-sm mb-3" data-validate="Please enter published Date of Book" style="height: 36px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 75px;">Published Date</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" id="publishedDate" name="publishedDate" ngModel required [(ngModel)]="book.publishedDate"
+                        placeholder="Date of Release of book" #publishedDate="ngModel" value="book.publishedDate" #inp (focus)="inp.type='date'"> 
+                </div>
+                <div class="container-login100-form-btn m-b-30">
+                    <button class="login100-form-btn" type="submit" [disabled]="!editBookForm.valid">
+                        Edit Book
+                    </button>
+                </div>
+            </form>
+        </div>

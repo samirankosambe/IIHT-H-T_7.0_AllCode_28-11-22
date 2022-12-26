@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.errorMessage = "";
       this.jwtResponse = response;
       this.jwtService.setToken(response.jwtToken);
-      this.jwtService.setUserid(response.user.userid);
+      this.jwtService.setUserid(response.user.userID);
       this.jwtService.setUsername(response.user.username);
       this.jwtService.setRole(response.user.role);
       this.router.navigate(['search']);

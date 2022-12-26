@@ -57,6 +57,8 @@ export class UserService {
   }
 
   addBook(userId: number, book: Book) {
+    console.log(book);
+    
     return this.http.post(USER_URL + "/author/" + userId + "/books", book, { responseType: "text" })
   }
 
@@ -65,7 +67,7 @@ export class UserService {
   }
 
   editBook(authorId: number, bookId: number, book: Book) {
-    return this.http.put(USER_URL + "/author/" + authorId + "/books/" + bookId, book);
+    return this.http.put(USER_URL + "/author/" + authorId + "/books/" + bookId, book, {responseType:"text"});
   }
 
   getBookByID(bookId: number) {

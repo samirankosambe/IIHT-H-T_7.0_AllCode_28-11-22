@@ -20,11 +20,6 @@ export class SearchComponent implements OnInit {
   author: string;
   price: number;
   publisher: string;
-  // category: string='Comics';
-  // title: string='Spiderman';
-  // author: string='Peter David';
-  // price: number=150;
-  // publisher: string='Marvel Studios';
   queryParam: string='';
   isBookFound: boolean = false;
   isLoggedIn:boolean = false;     

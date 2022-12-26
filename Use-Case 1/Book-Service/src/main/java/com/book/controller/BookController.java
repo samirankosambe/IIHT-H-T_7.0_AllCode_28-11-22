@@ -81,8 +81,14 @@ public class BookController {
 	}
 	
 	@GetMapping("/get/books/{author}")
-	public List<Book> getAllBooksByAuthor(@PathVariable("authorid") String author){
+	public List<Book> getAllBooksByAuthor(@PathVariable("author") String author){
 		return bookService.getAllBooksByAuthor(author);
+	}
+	
+	@GetMapping("/searchbyId/{bookid}")
+	public Book searchBooks(@PathVariable("bookid") Long bookId) {
+		Book book = bookService.getBookbyId(bookId);
+		return book;
 	}
 	
 	@GetMapping("get/all")

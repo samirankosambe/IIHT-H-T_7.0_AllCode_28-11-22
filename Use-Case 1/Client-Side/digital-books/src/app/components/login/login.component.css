@@ -1,4 +1,4 @@
-.login100-form-btn[disabled]{pointer-events:none;cursor:not-allowed;background-color: #0f3274;}
+.login100-form-btn[disabled]{pointer-events:none;cursor:not-allowed;background-color: lightsteelblue;}
 .login100-form-btn {
     display: -webkit-box;
     display: -webkit-flex;

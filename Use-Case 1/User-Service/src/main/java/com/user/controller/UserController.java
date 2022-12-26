@@ -141,7 +141,6 @@ public class UserController {
 	}
 
 	// To change the status of book
-	@PreAuthorize("hasRole('Admin')")
 	@PostMapping("/author/{authorID}/books/{bookID}/changeStatus")
 	public boolean changeBookStatus(@PathVariable("authorID") Long userID, @PathVariable("bookID") Long bookID)
 			throws Exception {
@@ -154,5 +153,12 @@ public class UserController {
 		@SuppressWarnings("unchecked")
 		List<Book> books = restTemplate.getForObject(BASE_URL + "/get/books/" + username, List.class);
 		return books;
+	}
+
+	// TO fetch a book by BOOKID
+	@GetMapping("/author/{bookid}/getbook")
+	public Book getBookById(@PathVariable("bookid") Integer bookId) {
+		Book book = restTemplate.getForObject(BASE_URL + "/searchbyId/" + bookId, Book.class);
+		return book;
 	}
 }
