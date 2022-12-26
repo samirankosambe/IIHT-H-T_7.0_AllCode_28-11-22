@@ -19,7 +19,7 @@
                 Inactive
             </button>
             <button class="btn btn-outline-primary" type="submit"
-            (click)="changeBookStatus(jwtService.getUserid(),book.bookID)" *ngIf="book.active">
+            (click)="changeBookStatus(jwtService.getUserid(),book.bookID)" style="width: 8%;" *ngIf="book.active">
             Active
         </button>
         </li>
