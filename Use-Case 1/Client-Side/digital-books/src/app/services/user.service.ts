@@ -4,7 +4,7 @@ import { JwtClientService } from './jwt-client.service';
 import { Book } from 'src/app/entity/book';
 import { User } from 'src/app/entity/user';
 
-const USER_URL = 'http://localhost:5002';
+const USER_URL = 'http://ec2-44-203-40-220.compute-1.amazonaws.com:5002';
 
 @Injectable({
   providedIn: 'root'
